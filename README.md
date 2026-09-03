@@ -231,7 +231,7 @@ curl -fsSL https://raw.githubusercontent.com/promptprobe/pretend-designer/main/p
 
 폴더 이름이 슬래시 명령입니다. `~/.claude/skills/pretend-designer/SKILL.md` 가 맞고, 폴더가 한 겹 더 들어가면 안 됩니다. 세션이 이미 켜져 있으면 새 세션을 열거나 `/skills` 로 확인하세요.
 
-호출: `/pretend-designer`. 안 불러도 설명과 맞으면 Claude가 스스로 켜니다.
+호출: `/pretend-designer`. 안 불러도 설명과 맞으면 Claude가 스스로 켭니다.
 
 ```text
 /pretend-designer
@@ -274,7 +274,7 @@ $pretend-designer
 ### 쓰는 법
 
 1. 페이지를 만들거나, 다시 칠하거나, 리뷰해 달라고 한다.
-2. 스킬을 켤다. Cursor / Claude Code 는 `/pretend-designer`, Codex 는 `$pretend-designer`.
+2. 스킬을 켠다. Cursor / Claude Code 는 `/pretend-designer`, Codex 는 `$pretend-designer`.
 3. 에이전트가 픽셀 전에 다섯 줄을 적어야 한다: 직무, 테제, 레퍼런스 하나, 타협 안 할 것, 이번에 안 만들 AI 티.
 4. 그다음 디자인. 마지막에 375 / 1280 체크 (페이지가 가운데 섬인지 포함).
 
