@@ -102,8 +102,6 @@ Cursor 또는 Claude Code:
 
 ## 한글 페이지는 더 엄격하게
 
-[Apple Korea iPhone 페이지](https://www.apple.com/kr/iphone/)의 데스크톱·모바일 실측 리듬을 참고하되 Apple의 브랜드나 SF Pro KR을 복제하지 않습니다.
-
 | 항목 | 기본 규칙 |
 | --- | --- |
 | 폰트 | Pretendard 또는 Noto Sans KR 중 하나만 사용 |
@@ -115,22 +113,6 @@ Cursor 또는 Claude Code:
 | 검수 | 실제 한글 문장으로 375px과 1280px 렌더링 확인 |
 
 전체 수치, 색상 토큰, CSS 예제와 검수표는 [한글 타이포그래피 표준](references/korean-typography.md)에 있습니다.
-
-## 실측 레퍼런스 라이브러리
-
-사례는 외형을 복사하기 위한 템플릿이 아닙니다. 측정한 타입·색상·페이지 구조·차트 문법을 현재 제품의 목적에 맞게 번역하기 위한 근거입니다.
-
-| 작업 | 참고 사례 |
-| --- | --- |
-| 한글 제품 페이지와 타이포 | [Apple Korea iPhone](references/cases/apple-korea-iphone.md) |
-| 빌더 행사, 터미널형 에디토리얼 | [BUIDL CTC](references/cases/buidl-creditcoin.md) |
-| 공개 분석 리포트, 단일 질문 차트 | [Visa Onchain Analytics](references/cases/visa-onchain-analytics.md) |
-| 모니터링 대시보드, 다중 비교 차트 | [Blockworks Analytics](references/cases/blockworks-analytics.md) |
-| 대형 타이포와 사진 중심 포트폴리오 | [Dots & Lines](references/cases/dots-and-lines.md) |
-| 실제 제품 UI를 이용한 마케팅 | [Stripe](references/cases/stripe.md) |
-| 금융 흐름과 다이어그램 스토리텔링 | [Spark Finance](references/cases/spark-finance.md) |
-
-차트를 만들 때는 [Chart grammar](references/chart-grammar.md)에서 설명형 리포트와 모니터링 터미널 중 하나를 먼저 선택합니다.
 
 ## 저장소 구조
 
