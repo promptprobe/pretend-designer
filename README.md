@@ -1,109 +1,24 @@
 # pretend-designer
 
-A skill for **Cursor**, **Claude Code**, and **Codex**. It makes landing pages and UI look like a working designer made them, not the default AI template (an unexamined font, purple gradient, three rounded cards, a centered 600px island).
+코딩 에이전트가 웹을 만들 때 반복하는 **AI 기본 디자인**을 피하게 만드는 디자인 스킬입니다.
 
-It is not a randomizer. Same brief, same thesis. Different projects pick different references on purpose so they do not all look like one another.
+보라 그라데이션, 둥근 카드 3장, 가운데 모인 히어로, 근거 없는 폰트와 색상 대신 먼저 디자인의 목적·테제·레퍼런스를 정하고 작업하게 합니다. Cursor, Claude Code, Codex에서 같은 규칙과 사례 라이브러리를 사용할 수 있습니다.
 
-한국어는 [아래](#한국어) · [다운로드](#다운로드) · [Cursor](#cursor-한국어) · [Claude Code](#claude-code-한국어) · [Codex](#codex-한국어)
+**[전체 저장소 ZIP 다운로드](https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.zip)** · **[스킬 원문](SKILL.md)** · **[한글 타이포 기준](references/korean-typography.md)** · **[레퍼런스 라이브러리](references/reference-workflow.md)**
 
-## Download
+## 1분 설치
 
-One skill folder, including its measured reference library. Three packs, so you drop the matching folder in the right location. Use the full-folder command under each agent; downloading only `SKILL.md` omits the case studies.
+이 스킬은 `SKILL.md` 하나가 아니라 `references/`까지 포함한 **폴더 단위**입니다. 에이전트에 맞는 `pretend-designer` 폴더 전체를 설치해야 실측 사례와 한글 타이포 규칙이 함께 작동합니다.
 
-| Agent | Download | This project (commit it) | Every project on this machine | Invoke |
+| 에이전트 | 받을 폴더 | 프로젝트에 설치 | 내 컴퓨터 전체에 설치 | 호출 |
 | --- | --- | --- | --- | --- |
-| **Cursor** | [folder](https://github.com/promptprobe/pretend-designer/tree/main/packs/cursor/pretend-designer) | `.cursor/skills/pretend-designer/` | `~/.cursor/skills/pretend-designer/` | `/pretend-designer` |
-| **Claude Code** | [folder](https://github.com/promptprobe/pretend-designer/tree/main/packs/claude/pretend-designer) | `.claude/skills/pretend-designer/` | `~/.claude/skills/pretend-designer/` | `/pretend-designer` |
-| **Codex** | [folder](https://github.com/promptprobe/pretend-designer/tree/main/packs/codex/pretend-designer) | `.agents/skills/pretend-designer/` | `~/.agents/skills/pretend-designer/` | `$pretend-designer` |
+| Cursor | [Cursor pack](packs/cursor/pretend-designer) | `.cursor/skills/pretend-designer/` | `~/.cursor/skills/pretend-designer/` | `/pretend-designer` |
+| Claude Code | [Claude pack](packs/claude/pretend-designer) | `.claude/skills/pretend-designer/` | `~/.claude/skills/pretend-designer/` | `/pretend-designer` |
+| Codex | [Codex pack](packs/codex/pretend-designer) | `.agents/skills/pretend-designer/` | `~/.agents/skills/pretend-designer/` | `$pretend-designer` |
 
-The three folders contain the same skill and references. Only the destination changes.
+### macOS / Linux: 내 컴퓨터 전체에 설치
 
----
-
-## Cursor
-
-**This project** (share with the team — commit the folder):
-
-```bash
-mkdir -p .cursor/skills/pretend-designer
-curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
-  | tar -xz --strip-components=4 -C .cursor/skills/pretend-designer \
-      pretend-designer-main/packs/cursor/pretend-designer
-```
-
-**Every project on this machine:**
-
-```bash
-mkdir -p ~/.cursor/skills/pretend-designer
-curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
-  | tar -xz --strip-components=4 -C ~/.cursor/skills/pretend-designer \
-      pretend-designer-main/packs/cursor/pretend-designer
-```
-
-Cloud Agents, Agents Window, and remote SSH do **not** see `~/.cursor/skills`. For those, put the skill in the repo (`.cursor/skills/`), not only in your home folder.
-
-**From Cursor UI:** Customize → Rules → Add Rule → Remote Rule (GitHub) → paste `https://github.com/promptprobe/pretend-designer`
-
-Restart Agent chat if it does not show up. Type `/` and search `pretend-designer`, or `@pretend-designer`.
-
-```text
-/pretend-designer
-Build a one-page UTM builder. Korean UI. No login.
-```
-
-Docs: [Cursor Agent Skills](https://cursor.com/docs/skills)
-
----
-
-## Claude Code
-
-**This project** (commit `.claude/skills/` so the team gets it):
-
-```bash
-mkdir -p .claude/skills/pretend-designer
-curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
-  | tar -xz --strip-components=4 -C .claude/skills/pretend-designer \
-      pretend-designer-main/packs/claude/pretend-designer
-```
-
-**Every project on this machine:**
-
-```bash
-mkdir -p ~/.claude/skills/pretend-designer
-curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
-  | tar -xz --strip-components=4 -C ~/.claude/skills/pretend-designer \
-      pretend-designer-main/packs/claude/pretend-designer
-```
-
-The folder name is the slash command. You want `~/.claude/skills/pretend-designer/SKILL.md`, not an extra nested folder.
-
-If you created `.claude/skills/` while a session was already running, start a new session (or run `/skills`) so Claude picks it up.
-
-Invoke with `/pretend-designer`, or just ask for a restyle — Claude loads it when the description matches.
-
-```text
-/pretend-designer
-This landing looks AI-generated. Restyle only. Do not change the JS.
-```
-
-Docs: [Extend Claude with skills](https://code.claude.com/docs/en/skills)
-
----
-
-## Codex
-
-Current Codex reads **`.agents/skills`**. Older installs still scan `~/.codex/skills`. Put it in `.agents` unless you already live in `$CODEX_HOME/skills`.
-
-**This project:**
-
-```bash
-mkdir -p .agents/skills/pretend-designer
-curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
-  | tar -xz --strip-components=4 -C .agents/skills/pretend-designer \
-      pretend-designer-main/packs/codex/pretend-designer
-```
-
-**Every project on this machine:**
+Codex:
 
 ```bash
 mkdir -p ~/.agents/skills/pretend-designer
@@ -112,196 +27,165 @@ curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/ma
       pretend-designer-main/packs/codex/pretend-designer
 ```
 
-If `$skill-installer` is what you use, it may still land in `~/.codex/skills`. That path still works. You can also copy the same file there:
+Claude Code:
 
 ```bash
-mkdir -p ~/.codex/skills/pretend-designer
+mkdir -p ~/.claude/skills/pretend-designer
 curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
-  | tar -xz --strip-components=4 -C ~/.codex/skills/pretend-designer \
-      pretend-designer-main/packs/codex/pretend-designer
+  | tar -xz --strip-components=4 -C ~/.claude/skills/pretend-designer \
+      pretend-designer-main/packs/claude/pretend-designer
 ```
 
-Restart Codex if the skill does not appear. Invoke with `$pretend-designer`, or open `/skills` and pick it. Codex can also match the description on its own.
+Cursor:
+
+```bash
+mkdir -p ~/.cursor/skills/pretend-designer
+curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=4 -C ~/.cursor/skills/pretend-designer \
+      pretend-designer-main/packs/cursor/pretend-designer
+```
+
+설치 후 실행 중이던 에이전트 세션을 다시 시작하세요. Cursor에서는 **Customize → Rules → Add Rule → Remote Rule (GitHub)**에 이 저장소 주소를 넣는 방법도 사용할 수 있습니다.
+
+### 프로젝트에만 설치
+
+[ZIP 파일](https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.zip)을 풀고 사용하는 에이전트의 pack 폴더를 프로젝트 안의 다음 위치로 복사합니다.
+
+```text
+Cursor       packs/cursor/pretend-designer  → .cursor/skills/pretend-designer
+Claude Code  packs/claude/pretend-designer  → .claude/skills/pretend-designer
+Codex        packs/codex/pretend-designer   → .agents/skills/pretend-designer
+```
+
+프로젝트 설치는 해당 폴더를 저장소에 커밋하면 팀원과 클라우드 에이전트도 같은 규칙을 사용한다는 장점이 있습니다.
+
+### 업데이트
+
+위 설치 명령을 다시 실행하면 같은 경로의 스킬과 레퍼런스가 최신 `main` 버전으로 갱신됩니다. 갱신 후에는 새 에이전트 세션에서 확인하세요.
+
+## 이렇게 사용합니다
+
+Codex:
 
 ```text
 $pretend-designer
-Review this page at 375 and 1280. Fail it if it is still a centered island.
+이 랜딩 페이지가 AI로 만든 것처럼 보인다. 현재 기능은 유지하고 디자인만 다시 잡아줘.
 ```
 
-Docs: [Build skills (Codex)](https://developers.openai.com/codex/skills)
-
----
-
-## How to use (any agent)
-
-1. Ask for a site, restyle, or UI review.
-2. Invoke the skill (`/pretend-designer` in Cursor and Claude Code, `$pretend-designer` in Codex), or say “use pretend-designer.”
-3. The agent must write five lines **before pixels**: job, thesis, one real reference, non-negotiables, the AI tell it will not make.
-4. Then it designs. Then it runs the ship check (including page width at 1280px).
-
-### Pin a look (not a lottery)
-
-If you do not name a reference, the agent picks one that fits the job. That is how two toys stop looking like twins. It is a commit, not a dice roll.
-
-To lock a mood, name the reference:
+Cursor 또는 Claude Code:
 
 ```text
 /pretend-designer
-Restyle this page.
-Reference: GOV.UK Design System. Keep our copy. Radius 0–2px.
+375px과 1280px에서 검토해. 가운데 섬 형태면 실패로 판단해.
 ```
 
-Same page, same brief, second run should stay in that thesis.
+원하는 방향을 고정하려면 실제 레퍼런스를 같이 지정합니다.
 
-### What you should see
+```text
+/pretend-designer
+이 페이지를 다시 디자인해.
+레퍼런스: Visa Onchain Analytics의 차트 구조.
+브랜드 색상과 문구는 우리 것을 유지해.
+```
 
-- A named palette (FT Origami, IBM Carbon, MTA, GDS, a foundry specimen) — not four invented hex codes
-- A written px ramp and a deliberate type system; Korean pages use exactly one Hangul family
-- Radius as a decision (often 0–4px on tools)
-- No unexamined default font / purple / 3-up rounded cards / Get started + Learn more
-- Korean text uses Pretendard or Noto Sans KR, generous measured leading, and zero or weak positive tracking; Inter is reserved for Latin-only pages
-- **Page vs measure:** prose stays ~60–72 characters. Header, grid, and the tool use the viewport. No centered 560–920px island with empty matching gutters. Do not “fix” that with `max-width: 1200px; margin: auto`.
+## 무엇이 달라지나
 
-### What this is not
+스킬이 활성화되면 에이전트는 픽셀을 만들기 전에 다음 다섯 가지를 먼저 정합니다.
 
-Not “add noise so it looks handmade.” Not Comic Sans. Not dark mode plus neon. Brand kits still win. Accessibility still wins.
+1. 이 페이지를 누가, 어떤 일을 끝내기 위해 사용하는가
+2. 페이지를 관통하는 하나의 시각적 테제는 무엇인가
+3. 구조와 태도를 빌릴 실제 레퍼런스는 무엇인가
+4. 끝까지 지킬 타입·재질·레이아웃 제약은 무엇인가
+5. 이번 작업에서 제거할 AI 기본 패턴은 무엇인가
 
-Any other agent that reads [Agent Skills](https://agentskills.io): copy `SKILL.md` into that agent’s skills folder, or paste the file into the chat once and say “follow this skill.”
+그다음 폰트, 색상, 페이지 폭, 라운드, 이미지, 차트, 모션을 같은 테제 아래에서 결정하고 375px과 1280px에서 다시 검사합니다.
 
-## Files
+## 한글 페이지는 더 엄격하게
 
-| Path | Why |
+[Apple Korea iPhone 페이지](https://www.apple.com/kr/iphone/)의 데스크톱·모바일 실측 리듬을 참고하되 Apple의 브랜드나 SF Pro KR을 복제하지 않습니다.
+
+| 항목 | 기본 규칙 |
 | --- | --- |
-| `SKILL.md` | Canonical skill |
-| `references/` | Measured case studies, Korean typography standard, and chart grammar |
-| `packs/cursor/pretend-designer/SKILL.md` | Cursor pack |
-| `packs/claude/pretend-designer/SKILL.md` | Claude Code pack |
-| `packs/codex/pretend-designer/SKILL.md` | Codex pack |
-| `.cursor/skills/pretend-designer/SKILL.md` | Same file, Cursor project layout (for this repo) |
-| `LICENSE` | MIT |
+| 폰트 | Pretendard 또는 Noto Sans KR 중 하나만 사용 |
+| Inter | 한글 글리프가 없으므로 영문 전용 페이지에서만 사용 |
+| 본문 | 기본 `17px / 27px`, 짧은 카드 문구는 `17px / 23px` |
+| 제목 웨이트 | 먼저 600을 사용하고, 이유 없이 700–900으로 올리지 않음 |
+| 자간 | 기본 `0`; 음수 자간 금지; 역할에 따라 약한 양수만 허용 |
+| 줄바꿈 | `word-break: keep-all`; 문단에 스크린샷용 `<br>` 금지 |
+| 검수 | 실제 한글 문장으로 375px과 1280px 렌더링 확인 |
 
----
+전체 수치, 색상 토큰, CSS 예제와 검수표는 [한글 타이포그래피 표준](references/korean-typography.md)에 있습니다.
 
-## 한국어
+## 실측 레퍼런스 라이브러리
 
-코딩 에이전트가 웹을 만들 때 고민 없는 기본 폰트 + 보라 그라데이션 + 카드 3장 + 가운데 600px 섬으로 수렴하는 걸 막는 스킬입니다. 같은 브리프는 같은 테제로 가고, 프로젝트마다 레퍼런스를 새로 고르라고 해서 **서로 다르게** 나오게 합니다. 복권이 아닙니다. 무드를 고정하려면 레퍼런스 사이트를 지정하세요.
+사례는 외형을 복사하기 위한 템플릿이 아닙니다. 측정한 타입·색상·페이지 구조·차트 문법을 현재 제품의 목적에 맞게 번역하기 위한 근거입니다.
 
-한글 페이지는 Apple Korea의 실측 리듬을 기준으로 합니다. Pretendard 또는 Noto Sans KR 중 하나만 쓰고, 본문은 기본 `17px/27px`, 자간은 `0` 또는 역할별 약한 양수만 허용합니다. Inter는 한글 글리프가 없으므로 영문 전용 페이지에서만 허용합니다.
+| 작업 | 참고 사례 |
+| --- | --- |
+| 한글 제품 페이지와 타이포 | [Apple Korea iPhone](references/cases/apple-korea-iphone.md) |
+| 빌더 행사, 터미널형 에디토리얼 | [BUIDL CTC](references/cases/buidl-creditcoin.md) |
+| 공개 분석 리포트, 단일 질문 차트 | [Visa Onchain Analytics](references/cases/visa-onchain-analytics.md) |
+| 모니터링 대시보드, 다중 비교 차트 | [Blockworks Analytics](references/cases/blockworks-analytics.md) |
+| 대형 타이포와 사진 중심 포트폴리오 | [Dots & Lines](references/cases/dots-and-lines.md) |
+| 실제 제품 UI를 이용한 마케팅 | [Stripe](references/cases/stripe.md) |
+| 금융 흐름과 다이어그램 스토리텔링 | [Spark Finance](references/cases/spark-finance.md) |
 
-### 다운로드
+차트를 만들 때는 [Chart grammar](references/chart-grammar.md)에서 설명형 리포트와 모니터링 터미널 중 하나를 먼저 선택합니다.
 
-스킬은 `SKILL.md`와 실측 레퍼런스 문서가 들어 있는 폴더 단위입니다. 아래 전체 폴더 설치 명령을 사용하세요. `SKILL.md`만 받으면 사례 라이브러리가 빠집니다.
-
-| 에이전트 | 다운로드 | 이 프로젝트 (커밋) | 이 컴퓨터 전부 | 호출 |
-| --- | --- | --- | --- | --- |
-| **Cursor** | [폴더](https://github.com/promptprobe/pretend-designer/tree/main/packs/cursor/pretend-designer) | `.cursor/skills/pretend-designer/` | `~/.cursor/skills/pretend-designer/` | `/pretend-designer` |
-| **Claude Code** | [폴더](https://github.com/promptprobe/pretend-designer/tree/main/packs/claude/pretend-designer) | `.claude/skills/pretend-designer/` | `~/.claude/skills/pretend-designer/` | `/pretend-designer` |
-| **Codex** | [폴더](https://github.com/promptprobe/pretend-designer/tree/main/packs/codex/pretend-designer) | `.agents/skills/pretend-designer/` | `~/.agents/skills/pretend-designer/` | `$pretend-designer` |
-
-### Cursor 한국어
-
-이 프로젝트만:
-
-```bash
-mkdir -p .cursor/skills/pretend-designer
-curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
-  | tar -xz --strip-components=4 -C .cursor/skills/pretend-designer \
-      pretend-designer-main/packs/cursor/pretend-designer
-```
-
-이 컴퓨터 모든 프로젝트:
-
-```bash
-mkdir -p ~/.cursor/skills/pretend-designer
-curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
-  | tar -xz --strip-components=4 -C ~/.cursor/skills/pretend-designer \
-      pretend-designer-main/packs/cursor/pretend-designer
-```
-
-클라우드 에이전트는 홈 폴더 스킬을 못 봅니다. 클라우드에서 돌릴 거면 레포 안 `.cursor/skills/` 에 넣으세요.
-
-Cursor UI: Customize → Rules → Add Rule → Remote Rule (GitHub) → `https://github.com/promptprobe/pretend-designer`
-
-채팅에서 `/` 치고 `pretend-designer` 를 고르거나 `@pretend-designer` 로 부르면 됩니다.
-
-### Claude Code 한국어
-
-이 프로젝트만 (팀에 공유하려면 `.claude/skills/` 를 커밋):
-
-```bash
-mkdir -p .claude/skills/pretend-designer
-curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
-  | tar -xz --strip-components=4 -C .claude/skills/pretend-designer \
-      pretend-designer-main/packs/claude/pretend-designer
-```
-
-이 컴퓨터 모든 프로젝트:
-
-```bash
-mkdir -p ~/.claude/skills/pretend-designer
-curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
-  | tar -xz --strip-components=4 -C ~/.claude/skills/pretend-designer \
-      pretend-designer-main/packs/claude/pretend-designer
-```
-
-폴더 이름이 슬래시 명령입니다. `~/.claude/skills/pretend-designer/SKILL.md` 가 맞고, 폴더가 한 겹 더 들어가면 안 됩니다. 세션이 이미 켜져 있으면 새 세션을 열거나 `/skills` 로 확인하세요.
-
-호출: `/pretend-designer`. 안 불러도 설명과 맞으면 Claude가 스스로 켭니다.
+## 저장소 구조
 
 ```text
-/pretend-designer
-이 랜딩이 AI티 남. JS는 건드리지 말고 다시 칠해.
+pretend-designer/
+├── SKILL.md                  # 기준 스킬
+├── references/               # 실측 사례와 세부 규칙
+│   ├── korean-typography.md
+│   ├── chart-grammar.md
+│   └── cases/
+├── packs/
+│   ├── cursor/pretend-designer/
+│   ├── claude/pretend-designer/
+│   └── codex/pretend-designer/
+└── .cursor/skills/pretend-designer/
 ```
 
-문서: [Claude Code skills](https://code.claude.com/docs/en/skills)
+각 pack의 `SKILL.md`와 `references/`는 같은 내용입니다. 루트 파일은 검토용 기준본이고, 설치할 때는 사용하는 에이전트의 pack 폴더 전체를 받으면 됩니다.
 
-### Codex 한국어
+## 범위
 
-지금 Codex는 **`.agents/skills`** 를 봅니다. 예전 경로는 `~/.codex/skills` 이고, 아직 스캔은 됩니다. 새로 넣으면 `.agents` 쓰세요.
+- 웹사이트, 랜딩 페이지, 대시보드, 포트폴리오, UI의 신규 디자인·리디자인·리뷰에 사용합니다.
+- 백엔드 작업이나 문서 작성만 필요한 요청에는 사용하지 않습니다.
+- 브랜드 가이드와 접근성 요구사항이 있다면 그것이 우선합니다.
+- 레퍼런스의 로고, 카피, 이미지, 데이터, 고유 브랜드 표현은 복제하지 않습니다.
 
-이 프로젝트만:
+MIT License. 자세한 내용은 [LICENSE](LICENSE)를 확인하세요.
 
-```bash
-mkdir -p .agents/skills/pretend-designer
-curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
-  | tar -xz --strip-components=4 -C .agents/skills/pretend-designer \
-      pretend-designer-main/packs/codex/pretend-designer
-```
+<details>
+<summary>English</summary>
 
-이 컴퓨터 모든 프로젝트:
+## What it is
 
-```bash
-mkdir -p ~/.agents/skills/pretend-designer
-curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
-  | tar -xz --strip-components=4 -C ~/.agents/skills/pretend-designer \
-      pretend-designer-main/packs/codex/pretend-designer
-```
+`pretend-designer` is a design skill for Cursor, Claude Code, and Codex. It pushes coding agents away from the recurring AI-template look—unexamined fonts, purple gradients, three rounded cards, centered heroes—and toward a page with a job, a visual thesis, a real reference, and explicit constraints.
 
-`$skill-installer` 는 아직 `~/.codex/skills` 에 넣을 수 있습니다. 안 보이면 Codex를 재시작하세요.
+Download the [complete repository ZIP](https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.zip), then copy the matching `pretend-designer` pack folder to your agent's skill directory:
 
-호출: `$pretend-designer`, 또는 `/skills` 에서 고르기.
+| Agent | Source folder | Project install | Global install | Invoke |
+| --- | --- | --- | --- | --- |
+| Cursor | [`packs/cursor/pretend-designer`](packs/cursor/pretend-designer) | `.cursor/skills/pretend-designer/` | `~/.cursor/skills/pretend-designer/` | `/pretend-designer` |
+| Claude Code | [`packs/claude/pretend-designer`](packs/claude/pretend-designer) | `.claude/skills/pretend-designer/` | `~/.claude/skills/pretend-designer/` | `/pretend-designer` |
+| Codex | [`packs/codex/pretend-designer`](packs/codex/pretend-designer) | `.agents/skills/pretend-designer/` | `~/.agents/skills/pretend-designer/` | `$pretend-designer` |
+
+Install the complete folder, not only `SKILL.md`; the skill routes to measured references in `references/`.
 
 ```text
 $pretend-designer
-375 / 1280에서 이 페이지 리뷰해. 가운데 섬이면 실패.
+Restyle this landing page without changing its behavior.
+Use Visa Onchain Analytics for chart structure, but keep our brand and copy.
 ```
 
-문서: [Codex skills](https://developers.openai.com/codex/skills)
+Korean pages use exactly one Hangul-capable family—Pretendard or Noto Sans KR—with the measured size, leading, tracking, and line-breaking rules in the [Korean typography standard](references/korean-typography.md). Inter is reserved for Latin-only pages because it does not contain Hangul glyphs.
 
-### 쓰는 법
+The reference library includes Apple Korea iPhone, BUIDL CTC, Visa Onchain Analytics, Blockworks Analytics, Dots & Lines, Stripe, and Spark Finance. It transfers structural decisions, not brand identity.
 
-1. 페이지를 만들거나, 다시 칠하거나, 리뷰해 달라고 한다.
-2. 스킬을 켠다. Cursor / Claude Code 는 `/pretend-designer`, Codex 는 `$pretend-designer`.
-3. 에이전트가 픽셀 전에 다섯 줄을 적어야 한다: 직무, 테제, 레퍼런스 하나, 타협 안 할 것, 이번에 안 만들 AI 티.
-4. 그다음 디자인. 마지막에 375 / 1280 체크 (페이지가 가운데 섬인지 포함).
+MIT License.
 
-무드 고정 예:
-
-```text
-/pretend-designer
-이 페이지 다시 칠해. 레퍼런스는 GOV.UK Design System. 복사는 그대로. 라운드 0–2px.
-```
-
-### 보면 안 되는 것
-
-고민 없는 기본 폰트, 보라 그라데이션, 카드 3장, Get started + Learn more, 배너처럼 둥근 테두리 박스, **양옆이 같이 빈 가운데 `max-width` 섬**. 글줄은 짧아도 되고, 헤더·그리드·툴은 화면 폭을 써야 합니다. 한글에서는 폰트 혼용, 음수 자간, 일괄 700–900 웨이트도 실패입니다.
+</details>
