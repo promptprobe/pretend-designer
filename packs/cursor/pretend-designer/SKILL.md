@@ -70,6 +70,11 @@ If any of these appear without a written reason that serves the thesis, rip them
 - Three-feature lists that say nothing
 - Placeholder testimonials, fake avatars, 4.9 stars
 - Gradient “Most popular” pricing pill
+- Dashboard headlines that dramatize an inferred takeaway the user did not request
+- An automatic subtitle that paraphrases the title or explains the page's own existence
+- Decorative English section codes such as `B / CHANNEL CHECK` inside a Korean UI
+- Meta headings that narrate the composition, count the evidence, or announce that sections are connected
+- Scope-exclusion disclaimers in the hero when the excluded data is irrelevant to the requested view
 
 Banning is not the design. After the bans, you still have to choose.
 
@@ -156,6 +161,17 @@ The page is a surface that meets the edges of the window. A lonely centered colu
 - One primary action, named after the outcome (“Send the invoice”, “Book Tuesday”), not “Get started.”
 - Headlines can be dry. Dry is designed. Hype is a template.
 
+### UI copy (mandatory for dashboards and tools)
+
+Read and apply [references/ui-copy.md](references/ui-copy.md). User-requested content and terminology outrank an agent's urge to make the page sound editorial.
+
+- Use the user's exact page name or a literal subject label as the title. Do not turn an inferred data pattern into a slogan or executive conclusion unless the user explicitly asked for one.
+- Default to **no subtitle**. Keep one only when it adds scope, unit, state, instruction, or risk that is necessary to use or interpret the page and is not already visible.
+- Give every visible string a job: identify, label, define, filter, instruct, warn, or enable action. If deleting it changes none of those, delete it.
+- Do not announce which unrelated data was excluded. Add a methodology note only when omission would cause a material misreading, the user requested it, or compliance requires it; place it next to the affected metric or in details, not in the hero.
+- Match the user's language. Do not invent alphabetical section folios, all-caps English labels, `SIGNAL`, `CHECK`, `OVERVIEW`, or `INSIGHT` as decoration. Preserve only real domain terms the user needs.
+- If `slop-sensor` is available, use its embedded mode with the appropriate register before finalizing Korean UI copy. Then run the UI necessity check above; prose-pattern detection alone cannot decide whether a sentence belongs in the interface.
+
 ## 4. Implementation (so the code does not undo the design)
 
 - CSS variables for the tokens, named after the source (`--paper`, `--claret`) not `--primary`.
@@ -167,7 +183,7 @@ The page is a surface that meets the edges of the window. A lonely centered colu
 
 ## Reference cases (conditional)
 
-When the user supplies a design reference, asks for a reference breakdown, or needs analytical charts, read [references/reference-workflow.md](references/reference-workflow.md). Select only the one or two cases that fit the current job; do not load the full case library by default. For chart work, also read [references/chart-grammar.md](references/chart-grammar.md). For any page containing Korean, read [references/korean-typography.md](references/korean-typography.md) regardless of visual direction.
+When the user supplies a design reference, asks for a reference breakdown, or needs analytical charts, read [references/reference-workflow.md](references/reference-workflow.md). Select only the one or two cases that fit the current job; do not load the full case library by default. For chart work, also read [references/chart-grammar.md](references/chart-grammar.md). For any page containing Korean, read [references/korean-typography.md](references/korean-typography.md) regardless of visual direction. For dashboards and tools, read [references/ui-copy.md](references/ui-copy.md).
 
 Reuse structure and decision logic, not outcome-specific fonts, colors, copy, imagery, or brand identity. State what principle is being borrowed, what recognizable feature is being rejected, and why the chosen case fits the current user's job.
 
@@ -179,13 +195,14 @@ Look at the page at 375px and 1280px, and answer:
 2. Could you identify the studio without the logo? (Type + color + geometry.)
 3. Is there a single element a coworker would argue about? If everything is agreeable, it is still average.
 4. Count unexamined default fonts / purple / 3-up cards / dual CTAs / fade-up / 16px+ radius on panels / outlined banners / centered 600–900px islands. Score must be zero unless justified in the thesis.
-5. Does the first screen contain an actual claim, not a slogan?
+5. Does every dashboard title name the user's requested subject, metric, or task instead of manufacturing a takeaway?
 6. Would a designer from the reference you named recognize the theft? If not, you only vibe-copied.
 7. Can you point at the palette source and the type ramp in the file?
 8. At 1280px, does chrome use the width, or is there a puddle of UI in the middle of the background?
 9. If Korean is present: is there exactly one Hangul family, no negative tracking, `word-break: keep-all`, and a measured line-height from the Korean reference scale?
+10. Delete every subtitle, explanatory sentence, section code, and methodology note once. If the page still works and means the same thing, keep it deleted.
 
-If 3, 4, 7, 8, or 9 fail, redo type, radius, color, and **page geometry** before adding more components.
+If 3, 4, 5, 7, 8, 9, or 10 fail, redo copy, type, radius, color, and **page geometry** before adding more components.
 
 ## 6. What this skill is not
 
