@@ -12,9 +12,9 @@
 
 | 에이전트 | 받을 폴더 | 프로젝트에 설치 | 내 컴퓨터 전체에 설치 | 호출 |
 | --- | --- | --- | --- | --- |
-| Cursor | [Cursor pack](packs/cursor/pretend-designer) | `.cursor/skills/pretend-designer/` | `~/.cursor/skills/pretend-designer/` | `/pretend-designer` |
-| Claude Code | [Claude pack](packs/claude/pretend-designer) | `.claude/skills/pretend-designer/` | `~/.claude/skills/pretend-designer/` | `/pretend-designer` |
-| Codex | [Codex pack](packs/codex/pretend-designer) | `.agents/skills/pretend-designer/` | `~/.agents/skills/pretend-designer/` | `$pretend-designer` |
+| Cursor | [Cursor pack](https://github.com/promptprobe/pretend-designer/tree/main/packs/cursor/pretend-designer) | `.cursor/skills/pretend-designer/` | `~/.cursor/skills/pretend-designer/` | `/pretend-designer` |
+| Claude Code | [Claude pack](https://github.com/promptprobe/pretend-designer/tree/main/packs/claude/pretend-designer) | `.claude/skills/pretend-designer/` | `~/.claude/skills/pretend-designer/` | `/pretend-designer` |
+| Codex | [Codex pack](https://github.com/promptprobe/pretend-designer/tree/main/packs/codex/pretend-designer) | `.agents/skills/pretend-designer/` | `~/.agents/skills/pretend-designer/` | `$pretend-designer` |
 
 ### macOS / Linux: 내 컴퓨터 전체에 설치
 
@@ -170,9 +170,9 @@ Download the [complete repository ZIP](https://github.com/promptprobe/pretend-de
 
 | Agent | Source folder | Project install | Global install | Invoke |
 | --- | --- | --- | --- | --- |
-| Cursor | [`packs/cursor/pretend-designer`](packs/cursor/pretend-designer) | `.cursor/skills/pretend-designer/` | `~/.cursor/skills/pretend-designer/` | `/pretend-designer` |
-| Claude Code | [`packs/claude/pretend-designer`](packs/claude/pretend-designer) | `.claude/skills/pretend-designer/` | `~/.claude/skills/pretend-designer/` | `/pretend-designer` |
-| Codex | [`packs/codex/pretend-designer`](packs/codex/pretend-designer) | `.agents/skills/pretend-designer/` | `~/.agents/skills/pretend-designer/` | `$pretend-designer` |
+| Cursor | [`packs/cursor/pretend-designer`](https://github.com/promptprobe/pretend-designer/tree/main/packs/cursor/pretend-designer) | `.cursor/skills/pretend-designer/` | `~/.cursor/skills/pretend-designer/` | `/pretend-designer` |
+| Claude Code | [`packs/claude/pretend-designer`](https://github.com/promptprobe/pretend-designer/tree/main/packs/claude/pretend-designer) | `.claude/skills/pretend-designer/` | `~/.claude/skills/pretend-designer/` | `/pretend-designer` |
+| Codex | [`packs/codex/pretend-designer`](https://github.com/promptprobe/pretend-designer/tree/main/packs/codex/pretend-designer) | `.agents/skills/pretend-designer/` | `~/.agents/skills/pretend-designer/` | `$pretend-designer` |
 
 Install the complete folder, not only `SKILL.md`; the skill routes to measured references in `references/`.
 
