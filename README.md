@@ -1,6 +1,6 @@
 # pretend-designer
 
-A skill for **Cursor**, **Claude Code**, and **Codex**. It makes landing pages and UI look like a working designer made them, not the default AI template (Inter, purple gradient, three rounded cards, a centered 600px island).
+A skill for **Cursor**, **Claude Code**, and **Codex**. It makes landing pages and UI look like a working designer made them, not the default AI template (an unexamined font, purple gradient, three rounded cards, a centered 600px island).
 
 It is not a randomizer. Same brief, same thesis. Different projects pick different references on purpose so they do not all look like one another.
 
@@ -8,15 +8,15 @@ It is not a randomizer. Same brief, same thesis. Different projects pick differe
 
 ## Download
 
-One `SKILL.md`. Three packs, so you drop it in the right folder. Click the file, then **Download raw file** — or use the one-liner under each agent.
+One skill folder, including its measured reference library. Three packs, so you drop the matching folder in the right location. Use the full-folder command under each agent; downloading only `SKILL.md` omits the case studies.
 
 | Agent | Download | This project (commit it) | Every project on this machine | Invoke |
 | --- | --- | --- | --- | --- |
-| **Cursor** | [SKILL.md](https://github.com/promptprobe/pretend-designer/blob/main/packs/cursor/pretend-designer/SKILL.md) | `.cursor/skills/pretend-designer/` | `~/.cursor/skills/pretend-designer/` | `/pretend-designer` |
-| **Claude Code** | [SKILL.md](https://github.com/promptprobe/pretend-designer/blob/main/packs/claude/pretend-designer/SKILL.md) | `.claude/skills/pretend-designer/` | `~/.claude/skills/pretend-designer/` | `/pretend-designer` |
-| **Codex** | [SKILL.md](https://github.com/promptprobe/pretend-designer/blob/main/packs/codex/pretend-designer/SKILL.md) | `.agents/skills/pretend-designer/` | `~/.agents/skills/pretend-designer/` | `$pretend-designer` |
+| **Cursor** | [folder](https://github.com/promptprobe/pretend-designer/tree/main/packs/cursor/pretend-designer) | `.cursor/skills/pretend-designer/` | `~/.cursor/skills/pretend-designer/` | `/pretend-designer` |
+| **Claude Code** | [folder](https://github.com/promptprobe/pretend-designer/tree/main/packs/claude/pretend-designer) | `.claude/skills/pretend-designer/` | `~/.claude/skills/pretend-designer/` | `/pretend-designer` |
+| **Codex** | [folder](https://github.com/promptprobe/pretend-designer/tree/main/packs/codex/pretend-designer) | `.agents/skills/pretend-designer/` | `~/.agents/skills/pretend-designer/` | `$pretend-designer` |
 
-The three files are the same skill. Only the destination folder changes.
+The three folders contain the same skill and references. Only the destination changes.
 
 ---
 
@@ -26,16 +26,18 @@ The three files are the same skill. Only the destination folder changes.
 
 ```bash
 mkdir -p .cursor/skills/pretend-designer
-curl -fsSL https://raw.githubusercontent.com/promptprobe/pretend-designer/main/packs/cursor/pretend-designer/SKILL.md \
-  -o .cursor/skills/pretend-designer/SKILL.md
+curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=4 -C .cursor/skills/pretend-designer \
+      pretend-designer-main/packs/cursor/pretend-designer
 ```
 
 **Every project on this machine:**
 
 ```bash
 mkdir -p ~/.cursor/skills/pretend-designer
-curl -fsSL https://raw.githubusercontent.com/promptprobe/pretend-designer/main/packs/cursor/pretend-designer/SKILL.md \
-  -o ~/.cursor/skills/pretend-designer/SKILL.md
+curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=4 -C ~/.cursor/skills/pretend-designer \
+      pretend-designer-main/packs/cursor/pretend-designer
 ```
 
 Cloud Agents, Agents Window, and remote SSH do **not** see `~/.cursor/skills`. For those, put the skill in the repo (`.cursor/skills/`), not only in your home folder.
@@ -59,16 +61,18 @@ Docs: [Cursor Agent Skills](https://cursor.com/docs/skills)
 
 ```bash
 mkdir -p .claude/skills/pretend-designer
-curl -fsSL https://raw.githubusercontent.com/promptprobe/pretend-designer/main/packs/claude/pretend-designer/SKILL.md \
-  -o .claude/skills/pretend-designer/SKILL.md
+curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=4 -C .claude/skills/pretend-designer \
+      pretend-designer-main/packs/claude/pretend-designer
 ```
 
 **Every project on this machine:**
 
 ```bash
 mkdir -p ~/.claude/skills/pretend-designer
-curl -fsSL https://raw.githubusercontent.com/promptprobe/pretend-designer/main/packs/claude/pretend-designer/SKILL.md \
-  -o ~/.claude/skills/pretend-designer/SKILL.md
+curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=4 -C ~/.claude/skills/pretend-designer \
+      pretend-designer-main/packs/claude/pretend-designer
 ```
 
 The folder name is the slash command. You want `~/.claude/skills/pretend-designer/SKILL.md`, not an extra nested folder.
@@ -94,24 +98,27 @@ Current Codex reads **`.agents/skills`**. Older installs still scan `~/.codex/sk
 
 ```bash
 mkdir -p .agents/skills/pretend-designer
-curl -fsSL https://raw.githubusercontent.com/promptprobe/pretend-designer/main/packs/codex/pretend-designer/SKILL.md \
-  -o .agents/skills/pretend-designer/SKILL.md
+curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=4 -C .agents/skills/pretend-designer \
+      pretend-designer-main/packs/codex/pretend-designer
 ```
 
 **Every project on this machine:**
 
 ```bash
 mkdir -p ~/.agents/skills/pretend-designer
-curl -fsSL https://raw.githubusercontent.com/promptprobe/pretend-designer/main/packs/codex/pretend-designer/SKILL.md \
-  -o ~/.agents/skills/pretend-designer/SKILL.md
+curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=4 -C ~/.agents/skills/pretend-designer \
+      pretend-designer-main/packs/codex/pretend-designer
 ```
 
 If `$skill-installer` is what you use, it may still land in `~/.codex/skills`. That path still works. You can also copy the same file there:
 
 ```bash
 mkdir -p ~/.codex/skills/pretend-designer
-curl -fsSL https://raw.githubusercontent.com/promptprobe/pretend-designer/main/packs/codex/pretend-designer/SKILL.md \
-  -o ~/.codex/skills/pretend-designer/SKILL.md
+curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=4 -C ~/.codex/skills/pretend-designer \
+      pretend-designer-main/packs/codex/pretend-designer
 ```
 
 Restart Codex if the skill does not appear. Invoke with `$pretend-designer`, or open `/skills` and pick it. Codex can also match the description on its own.
@@ -149,9 +156,10 @@ Same page, same brief, second run should stay in that thesis.
 ### What you should see
 
 - A named palette (FT Origami, IBM Carbon, MTA, GDS, a foundry specimen) — not four invented hex codes
-- Two typefaces with a written px ramp
+- A written px ramp and a deliberate type system; Korean pages use exactly one Hangul family
 - Radius as a decision (often 0–4px on tools)
-- No Inter / purple / 3-up rounded cards / Get started + Learn more
+- No unexamined default font / purple / 3-up rounded cards / Get started + Learn more
+- Korean text uses Pretendard or Noto Sans KR, generous measured leading, and zero or weak positive tracking; Inter is reserved for Latin-only pages
 - **Page vs measure:** prose stays ~60–72 characters. Header, grid, and the tool use the viewport. No centered 560–920px island with empty matching gutters. Do not “fix” that with `max-width: 1200px; margin: auto`.
 
 ### What this is not
@@ -165,6 +173,7 @@ Any other agent that reads [Agent Skills](https://agentskills.io): copy `SKILL.m
 | Path | Why |
 | --- | --- |
 | `SKILL.md` | Canonical skill |
+| `references/` | Measured case studies, Korean typography standard, and chart grammar |
 | `packs/cursor/pretend-designer/SKILL.md` | Cursor pack |
 | `packs/claude/pretend-designer/SKILL.md` | Claude Code pack |
 | `packs/codex/pretend-designer/SKILL.md` | Codex pack |
@@ -175,17 +184,19 @@ Any other agent that reads [Agent Skills](https://agentskills.io): copy `SKILL.m
 
 ## 한국어
 
-코딩 에이전트가 웹을 만들 때 Inter + 보라 그라데이션 + 카드 3장 + 가운데 600px 섬으로 수렴하는 걸 막는 스킬입니다. 같은 브리프는 같은 테제로 가고, 프로젝트마다 레퍼런스를 새로 고르라고 해서 **서로 다르게** 나오게 합니다. 복권이 아닙니다. 무드를 고정하려면 레퍼런스 사이트를 지정하세요.
+코딩 에이전트가 웹을 만들 때 고민 없는 기본 폰트 + 보라 그라데이션 + 카드 3장 + 가운데 600px 섬으로 수렴하는 걸 막는 스킬입니다. 같은 브리프는 같은 테제로 가고, 프로젝트마다 레퍼런스를 새로 고르라고 해서 **서로 다르게** 나오게 합니다. 복권이 아닙니다. 무드를 고정하려면 레퍼런스 사이트를 지정하세요.
+
+한글 페이지는 Apple Korea의 실측 리듬을 기준으로 합니다. Pretendard 또는 Noto Sans KR 중 하나만 쓰고, 본문은 기본 `17px/27px`, 자간은 `0` 또는 역할별 약한 양수만 허용합니다. Inter는 한글 글리프가 없으므로 영문 전용 페이지에서만 허용합니다.
 
 ### 다운로드
 
-스킬은 `SKILL.md` 하나입니다. 에이전트별로 넣을 폴더만 다릅니다. 링크에서 **Download raw file** 을 누르거나, 아래 한 줄을 실행하세요.
+스킬은 `SKILL.md`와 실측 레퍼런스 문서가 들어 있는 폴더 단위입니다. 아래 전체 폴더 설치 명령을 사용하세요. `SKILL.md`만 받으면 사례 라이브러리가 빠집니다.
 
 | 에이전트 | 다운로드 | 이 프로젝트 (커밋) | 이 컴퓨터 전부 | 호출 |
 | --- | --- | --- | --- | --- |
-| **Cursor** | [SKILL.md](https://github.com/promptprobe/pretend-designer/blob/main/packs/cursor/pretend-designer/SKILL.md) | `.cursor/skills/pretend-designer/` | `~/.cursor/skills/pretend-designer/` | `/pretend-designer` |
-| **Claude Code** | [SKILL.md](https://github.com/promptprobe/pretend-designer/blob/main/packs/claude/pretend-designer/SKILL.md) | `.claude/skills/pretend-designer/` | `~/.claude/skills/pretend-designer/` | `/pretend-designer` |
-| **Codex** | [SKILL.md](https://github.com/promptprobe/pretend-designer/blob/main/packs/codex/pretend-designer/SKILL.md) | `.agents/skills/pretend-designer/` | `~/.agents/skills/pretend-designer/` | `$pretend-designer` |
+| **Cursor** | [폴더](https://github.com/promptprobe/pretend-designer/tree/main/packs/cursor/pretend-designer) | `.cursor/skills/pretend-designer/` | `~/.cursor/skills/pretend-designer/` | `/pretend-designer` |
+| **Claude Code** | [폴더](https://github.com/promptprobe/pretend-designer/tree/main/packs/claude/pretend-designer) | `.claude/skills/pretend-designer/` | `~/.claude/skills/pretend-designer/` | `/pretend-designer` |
+| **Codex** | [폴더](https://github.com/promptprobe/pretend-designer/tree/main/packs/codex/pretend-designer) | `.agents/skills/pretend-designer/` | `~/.agents/skills/pretend-designer/` | `$pretend-designer` |
 
 ### Cursor 한국어
 
@@ -193,16 +204,18 @@ Any other agent that reads [Agent Skills](https://agentskills.io): copy `SKILL.m
 
 ```bash
 mkdir -p .cursor/skills/pretend-designer
-curl -fsSL https://raw.githubusercontent.com/promptprobe/pretend-designer/main/packs/cursor/pretend-designer/SKILL.md \
-  -o .cursor/skills/pretend-designer/SKILL.md
+curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=4 -C .cursor/skills/pretend-designer \
+      pretend-designer-main/packs/cursor/pretend-designer
 ```
 
 이 컴퓨터 모든 프로젝트:
 
 ```bash
 mkdir -p ~/.cursor/skills/pretend-designer
-curl -fsSL https://raw.githubusercontent.com/promptprobe/pretend-designer/main/packs/cursor/pretend-designer/SKILL.md \
-  -o ~/.cursor/skills/pretend-designer/SKILL.md
+curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=4 -C ~/.cursor/skills/pretend-designer \
+      pretend-designer-main/packs/cursor/pretend-designer
 ```
 
 클라우드 에이전트는 홈 폴더 스킬을 못 봅니다. 클라우드에서 돌릴 거면 레포 안 `.cursor/skills/` 에 넣으세요.
@@ -217,16 +230,18 @@ Cursor UI: Customize → Rules → Add Rule → Remote Rule (GitHub) → `https:
 
 ```bash
 mkdir -p .claude/skills/pretend-designer
-curl -fsSL https://raw.githubusercontent.com/promptprobe/pretend-designer/main/packs/claude/pretend-designer/SKILL.md \
-  -o .claude/skills/pretend-designer/SKILL.md
+curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=4 -C .claude/skills/pretend-designer \
+      pretend-designer-main/packs/claude/pretend-designer
 ```
 
 이 컴퓨터 모든 프로젝트:
 
 ```bash
 mkdir -p ~/.claude/skills/pretend-designer
-curl -fsSL https://raw.githubusercontent.com/promptprobe/pretend-designer/main/packs/claude/pretend-designer/SKILL.md \
-  -o ~/.claude/skills/pretend-designer/SKILL.md
+curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=4 -C ~/.claude/skills/pretend-designer \
+      pretend-designer-main/packs/claude/pretend-designer
 ```
 
 폴더 이름이 슬래시 명령입니다. `~/.claude/skills/pretend-designer/SKILL.md` 가 맞고, 폴더가 한 겹 더 들어가면 안 됩니다. 세션이 이미 켜져 있으면 새 세션을 열거나 `/skills` 로 확인하세요.
@@ -248,16 +263,18 @@ curl -fsSL https://raw.githubusercontent.com/promptprobe/pretend-designer/main/p
 
 ```bash
 mkdir -p .agents/skills/pretend-designer
-curl -fsSL https://raw.githubusercontent.com/promptprobe/pretend-designer/main/packs/codex/pretend-designer/SKILL.md \
-  -o .agents/skills/pretend-designer/SKILL.md
+curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=4 -C .agents/skills/pretend-designer \
+      pretend-designer-main/packs/codex/pretend-designer
 ```
 
 이 컴퓨터 모든 프로젝트:
 
 ```bash
 mkdir -p ~/.agents/skills/pretend-designer
-curl -fsSL https://raw.githubusercontent.com/promptprobe/pretend-designer/main/packs/codex/pretend-designer/SKILL.md \
-  -o ~/.agents/skills/pretend-designer/SKILL.md
+curl -fsSL https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.tar.gz \
+  | tar -xz --strip-components=4 -C ~/.agents/skills/pretend-designer \
+      pretend-designer-main/packs/codex/pretend-designer
 ```
 
 `$skill-installer` 는 아직 `~/.codex/skills` 에 넣을 수 있습니다. 안 보이면 Codex를 재시작하세요.
@@ -287,4 +304,4 @@ $pretend-designer
 
 ### 보면 안 되는 것
 
-Inter, 보라 그라데이션, 카드 3장, Get started + Learn more, 배너처럼 둥근 테두리 박스, **양옆이 같이 빈 가운데 `max-width` 섬**. 글줄은 짧아도 되고, 헤더·그리드·툴은 화면 폭을 써야 합니다.
+고민 없는 기본 폰트, 보라 그라데이션, 카드 3장, Get started + Learn more, 배너처럼 둥근 테두리 박스, **양옆이 같이 빈 가운데 `max-width` 섬**. 글줄은 짧아도 되고, 헤더·그리드·툴은 화면 폭을 써야 합니다. 한글에서는 폰트 혼용, 음수 자간, 일괄 700–900 웨이트도 실패입니다.

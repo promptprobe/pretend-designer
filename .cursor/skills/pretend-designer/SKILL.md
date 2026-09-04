@@ -6,7 +6,7 @@ description: >-
 ---
 # pretend-designer
 
-Act like a working web designer with a brief, a thesis, and taste. Do not average the internet. The default output of a coding model is already a genre: Inter, indigo/purple, three rounded cards, centered hero. People clock that in three seconds. This skill exists to refuse that genre.
+Act like a working web designer with a brief, a thesis, and taste. Do not average the internet. The default output of a coding model is already a genre: an unexamined default font, indigo/purple, three rounded cards, centered hero. People clock that in three seconds. This skill exists to refuse that genre.
 
 Use this for new pages, restyles, and design reviews. Skip it for pure backend, docs-only, or when the user named a specific existing system to copy exactly.
 
@@ -17,7 +17,7 @@ Write these five lines to yourself, then design. If you cannot fill them, you do
 1. **Job.** One sentence: who this is for, what they do on this page, what “done” looks like.
 2. **Thesis.** One visual idea, not a moodboard dump. Examples: “a typesetter’s shop sign, not a SaaS dashboard”; “newsprint + one acid green”; “a 90s catalog grid with contemporary spacing.”
 3. **One real reference.** A specific existing site, magazine, album cover, wayfinding system, or product UI. Name it. Steal structure and attitude from that one thing, not from “modern SaaS.” If the user did not give a reference, pick one that fits the job and say which.
-4. **Non-negotiables.** Two or three constraints that hurt: a type pairing, a dominant material (paper, CRT, metal, newsprint), a layout rule (no centered hero, no 3-up cards, full-bleed type, etc.).
+4. **Non-negotiables.** Two or three constraints that hurt: a type system, a dominant material (paper, CRT, metal, newsprint), a layout rule (no centered hero, no 3-up cards, full-bleed type, etc.).
 5. **The tell you will not make.** Name the AI default this page would have fallen into, then ban it.
 
 Do not start in Tailwind defaults. Do not start in shadcn. Those are implementation later, after the thesis is visible in type, color, and page geometry.
@@ -27,11 +27,13 @@ Do not start in Tailwind defaults. Do not start in shadcn. Those are implementat
 If any of these appear without a written reason that serves the thesis, rip them out.
 
 **Type**
-- Inter, Roboto, system-ui as the only face
+- An unexamined default font with no written reason
 - Geist / Geist Mono as the “interesting” substitute (it is the new Inter)
 - Space Grotesk, Poppins, Montserrat as the display face
-- One family for the whole page
 - Headlines at weight 700 with `letter-spacing: -0.02em` as a reflex
+- Negative tracking on Korean text as a reflex
+- Mixing type families inside one Korean page
+- Inter assigned to Korean text: Inter has no Hangul glyphs, so the browser silently mixes in a fallback
 - The default type ramp (`3rem / 2.25rem / 1.5rem / 1rem`)
 
 **Color**
@@ -75,16 +77,27 @@ Banning is not the design. After the bans, you still have to choose.
 
 A real designer commits. Pick **one** of these directions and go deep. Mixing three of them is how you get another average.
 
-- **Typographic.** The page is a typesetting job. Display + text pairing does 80% of the work. Color is 2–3 notes. Layout follows measure and crop.
+- **Typographic.** The page is a typesetting job. A deliberate type system does 80% of the work. Latin pages may pair display and text faces; Korean pages use one Hangul family with scale and weight doing the hierarchy. Color is 2–3 notes. Layout follows measure and crop.
 - **Editorial.** Magazine or newspaper geometry: columns, pull quotes, rules, folios, running feet, image that breaks the grid.
 - **Material.** The screen is a surface (paper, plaster, steel, thermal print, CRT). Texture, edge, ink spread. Not a PNG overlay of “paper.”
 - **Product-index.** Like a catalog, parts list, or wayfinding: dense, tabular, labeled, utilitarian. Beauty from order, not from hero.
 - **Brutal / cheap.** Default system chrome used on purpose. Ugly-pretty. Few fonts, hard corners, one loud accent.
 - **Historical cut.** Steal from a decade that is not 2024-SaaS (Swiss, Dutch postmodern, Japanese retail, 70s sci-fi paperback, early web). Translate, do not costume.
 
-If the product is actually a tool, it can still have a thesis. Linear did. Craigslist did. A docs site can be typeset. Do not use “it’s a tool so Inter is fine.”
+If the product is actually a tool, it can still have a thesis. Linear did. Craigslist did. A docs site can be typeset. Do not use “it’s a tool so the default is fine.”
 
 ## 3. Craft rules
+
+### Korean typography (mandatory when Hangul is present)
+
+Read and apply [references/korean-typography.md](references/korean-typography.md) before styling any Korean page. Its font-family, size, line-height, tracking, line-breaking, and QA rules override generic type advice in this skill.
+
+- Use exactly one Hangul-capable family for the page: **Pretendard** or **Noto Sans KR**. Do not assign different families to headings, body, numbers, or controls.
+- Use **Inter only for Latin-only pages**. It has no Hangul glyphs and cannot satisfy the one-family rule on a Korean page.
+- Build hierarchy with size and weight, normally 400 and 600, before introducing 700 or 800.
+- Default Korean tracking to `0`. Never apply negative tracking automatically. Use only the small positive values in the reference scale when that role calls for them.
+- Default Korean body copy to `17px/27px`; compact cards may use `17px/23px`. Do not squeeze explanatory Korean into a generic `16px/24px` preset without evidence.
+- Use `word-break: keep-all`. Let paragraphs wrap naturally; insert manual line breaks only in short, deliberately composed display copy.
 
 ### Color palette (do this first)
 
@@ -100,11 +113,11 @@ One accent that is slightly wrong for the category (claret on a calculator, scho
 
 Write the ramp in px **before** CSS: display, lede, label, body, number, caption. Different jobs get different sizes, not one 16px body with a bold 32px title.
 
-- Two faces, different jobs. Display is not a heavier weight of the text face unless that is the thesis.
+- On Latin-only pages, two faces may take different jobs when the thesis needs it. On Korean pages, one Hangul family uses weight and scale for every role.
 - Prefer fonts with a body: oldstyle or tabular figures when numbers matter; a real italic; optical sizes if they exist.
 - Self-host or use a specific foundry CSS, not “whatever Google Fonts listed first.”
 - **Measure is for prose, not for the page.** Reading text: 60–72 characters. Headlines can break it. Tools, tables, mastheads, and grids use the viewport.
-- Tracking: tighter on large display, looser on small caps/labels. Never one tracking for all sizes.
+- Tracking: choose by script and role. Latin display may be tighter; Korean display defaults to zero or weak positive tracking, never reflexively negative.
 - **Ink is a palette token, not leftover gray.** Mute text uses the system’s mute (a named gray/mix), not a muddy brown that almost matches the paper. Headlines, labels, and numbers should not all be the same hex.
 
 ### Radius (first-order, not a polish pass)
@@ -149,8 +162,14 @@ The page is a surface that meets the edges of the window. A lonely centered colu
 - If you use Tailwind, treat it as a compiler, not a look. Custom theme, custom font, custom radius (including `0` or `2px`).
 - Avoid shadcn defaults unless you restyle every token. A restyled button is fine; a page of default `Card` is not.
 - Semantic HTML. Real labels. Focus states that match the thesis (ink ring, claret underline, fat outline), not a gold glow.
-- Do not load five webfonts. Two families, two to four files.
+- On Korean pages, load one family and only the weights needed. On Latin-only pages, use at most two families and two to four files.
 - No autoplay video backgrounds.
+
+## Reference cases (conditional)
+
+When the user supplies a design reference, asks for a reference breakdown, or needs analytical charts, read [references/reference-workflow.md](references/reference-workflow.md). Select only the one or two cases that fit the current job; do not load the full case library by default. For chart work, also read [references/chart-grammar.md](references/chart-grammar.md). For any page containing Korean, read [references/korean-typography.md](references/korean-typography.md) regardless of visual direction.
+
+Reuse structure and decision logic, not outcome-specific fonts, colors, copy, imagery, or brand identity. State what principle is being borrowed, what recognizable feature is being rejected, and why the chosen case fits the current user's job.
 
 ## 5. Ship check (run before you call it done)
 
@@ -159,13 +178,14 @@ Look at the page at 375px and 1280px, and answer:
 1. If you grayscale it, does hierarchy still hold?
 2. Could you identify the studio without the logo? (Type + color + geometry.)
 3. Is there a single element a coworker would argue about? If everything is agreeable, it is still average.
-4. Count Inter / purple / 3-up cards / dual CTAs / fade-up / 16px+ radius on panels / outlined banners / centered 600–900px islands. Score must be zero unless justified in the thesis.
+4. Count unexamined default fonts / purple / 3-up cards / dual CTAs / fade-up / 16px+ radius on panels / outlined banners / centered 600–900px islands. Score must be zero unless justified in the thesis.
 5. Does the first screen contain an actual claim, not a slogan?
 6. Would a designer from the reference you named recognize the theft? If not, you only vibe-copied.
 7. Can you point at the palette source and the type ramp in the file?
 8. At 1280px, does chrome use the width, or is there a puddle of UI in the middle of the background?
+9. If Korean is present: is there exactly one Hangul family, no negative tracking, `word-break: keep-all`, and a measured line-height from the Korean reference scale?
 
-If 3, 4, 7, or 8 fail, redo type, radius, color, and **page geometry** before adding more components.
+If 3, 4, 7, 8, or 9 fail, redo type, radius, color, and **page geometry** before adding more components.
 
 ## 6. What this skill is not
 
