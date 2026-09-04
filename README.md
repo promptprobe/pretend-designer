@@ -100,6 +100,20 @@ Cursor 또는 Claude Code:
 
 그다음 폰트, 색상, 페이지 폭, 라운드, 이미지, 차트, 모션을 같은 테제 아래에서 결정하고 375px과 1280px에서 다시 검사합니다.
 
+## 대시보드 카피는 필요한 말만
+
+대시보드와 도구 화면에서는 레이아웃의 빈칸을 채우기 위한 헤드라인·부제·설명문을 만들지 않습니다. 사용자가 요청한 이름과 실제 지표를 우선하고, 문장을 지워도 사용과 해석에 문제가 없다면 삭제합니다.
+
+| 항목 | 기본값 |
+| --- | --- |
+| 페이지 제목 | 사용자가 요청한 페이지·지표·업무 이름을 그대로 사용 |
+| 부제 | 없음. 단위·기간·상태·필수 지침이 없으면 추가하지 않음 |
+| 결론형 헤드라인 | 사용자가 분석이나 요약을 요청하고 근거가 있을 때만 사용 |
+| 방법론·제외 항목 | 오해 방지·규제·사용자 요청에 필요할 때만 해당 지표 근처에 표시 |
+| 섹션명 | 내용을 직접 명명. 장식용 `A/B/C/D`, `SIGNAL`, `CHECK`는 사용하지 않음 |
+
+[Slop Sensor](https://github.com/promptprobe/slop-sensor)를 사용할 수 있으면 먼저 문체 패턴을 검사합니다. 다만 자연스럽지만 불필요한 UI 문장은 패턴 검사만으로 잡히지 않으므로, 이어서 별도의 필요성 검사를 수행합니다. 전체 기준과 예시는 [대시보드 UI 카피 표준](references/ui-copy.md)에 있습니다.
+
 ## 한글 페이지는 더 엄격하게
 
 | 항목 | 기본 규칙 |
@@ -122,6 +136,7 @@ pretend-designer/
 ├── references/               # 실측 사례와 세부 규칙
 │   ├── korean-typography.md
 │   ├── chart-grammar.md
+│   ├── ui-copy.md
 │   └── cases/
 ├── packs/
 │   ├── cursor/pretend-designer/
@@ -165,6 +180,8 @@ Use Visa Onchain Analytics for chart structure, but keep our brand and copy.
 ```
 
 Korean pages use exactly one Hangul-capable family—Pretendard or Noto Sans KR—with the measured size, leading, tracking, and line-breaking rules in the [Korean typography standard](references/korean-typography.md). Inter is reserved for Latin-only pages because it does not contain Hangul glyphs.
+
+For dashboards and tools, the [UI copy standard](references/ui-copy.md) defaults to literal user-requested titles, no subtitle, no decorative English section codes, and no methodology copy unless it prevents a material misreading.
 
 The reference library includes Apple Korea iPhone, BUIDL CTC, Visa Onchain Analytics, Blockworks Analytics, Dots & Lines, Stripe, and Spark Finance. It transfers structural decisions, not brand identity.
 
