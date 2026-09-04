@@ -8,7 +8,7 @@
 
 ## 1분 설치
 
-이 스킬은 `SKILL.md` 하나가 아니라 `references/`까지 포함한 **폴더 단위**입니다. 에이전트에 맞는 `pretend-designer` 폴더 전체를 설치해야 실측 사례와 한글 타이포 규칙이 함께 작동합니다.
+이 스킬은 `SKILL.md` 하나가 아니라 `references/`와 `scripts/`까지 포함한 **폴더 단위**입니다. 에이전트에 맞는 `pretend-designer` 폴더 전체를 설치해야 실측 사례, 한글 타이포 규칙, 팔레트 생성기가 함께 작동합니다.
 
 | 에이전트 | 받을 폴더 | 프로젝트에 설치 | 내 컴퓨터 전체에 설치 | 호출 |
 | --- | --- | --- | --- | --- |
@@ -100,6 +100,19 @@ Cursor 또는 Claude Code:
 
 그다음 폰트, 색상, 페이지 폭, 라운드, 이미지, 차트, 모션을 같은 테제 아래에서 결정하고 375px과 1280px에서 다시 검사합니다.
 
+## 색상은 특정 레퍼런스로 고정하지 않습니다
+
+브랜드 팔레트가 없을 때 IBM Carbon처럼 에이전트가 익숙한 시스템을 반복 선택하지 않습니다. 번들된 팔레트 생성기가 실행할 때마다 새로운 seed로 색상 역할을 만들고, 본문·보조문·강조색·상태색의 대비를 함께 검사합니다.
+
+| 상황 | 처리 |
+| --- | --- |
+| 사용자 브랜드·제품 팔레트가 있음 | 해당 팔레트를 유지 |
+| 정확한 색상 요구가 있음 | 사용자 요구를 우선 |
+| 구조·차트 레퍼런스만 있음 | 레퍼런스 색상은 가져오지 않음 |
+| 색상 요구가 전혀 없음 | 독립적인 팔레트 생성기를 한 번 실행 |
+
+생성된 CSS에는 seed가 남으므로 마음에 든 결과는 재현할 수 있지만, 다음 프로젝트의 기본값으로 재사용하지 않습니다. 자세한 기준은 [팔레트 선택 규칙](references/palette-selection.md)에 있습니다.
+
 ## 대시보드 카피는 필요한 말만
 
 대시보드와 도구 화면에서는 레이아웃의 빈칸을 채우기 위한 헤드라인·부제·설명문을 만들지 않습니다. 사용자가 요청한 이름과 실제 지표를 우선하고, 문장을 지워도 사용과 해석에 문제가 없다면 삭제합니다.
@@ -137,7 +150,10 @@ pretend-designer/
 │   ├── korean-typography.md
 │   ├── chart-grammar.md
 │   ├── ui-copy.md
+│   ├── palette-selection.md
 │   └── cases/
+├── scripts/
+│   └── palette_lottery.py
 ├── packs/
 │   ├── cursor/pretend-designer/
 │   ├── claude/pretend-designer/
@@ -171,7 +187,7 @@ Download the [complete repository ZIP](https://github.com/promptprobe/pretend-de
 | Claude Code | [`packs/claude/pretend-designer`](https://github.com/promptprobe/pretend-designer/tree/main/packs/claude/pretend-designer) | `.claude/skills/pretend-designer/` | `~/.claude/skills/pretend-designer/` | `/pretend-designer` |
 | Codex | [`packs/codex/pretend-designer`](https://github.com/promptprobe/pretend-designer/tree/main/packs/codex/pretend-designer) | `.agents/skills/pretend-designer/` | `~/.agents/skills/pretend-designer/` | `$pretend-designer` |
 
-Install the complete folder, not only `SKILL.md`; the skill routes to measured references in `references/`.
+Install the complete folder, not only `SKILL.md`; the skill routes to measured references in `references/` and uses the bundled palette generator in `scripts/`.
 
 ```text
 $pretend-designer
@@ -182,6 +198,8 @@ Use Visa Onchain Analytics for chart structure, but keep our brand and copy.
 Korean pages use exactly one Hangul-capable family—Pretendard or Noto Sans KR—with the measured size, leading, tracking, and line-breaking rules in the [Korean typography standard](references/korean-typography.md). Inter is reserved for Latin-only pages because it does not contain Hangul glyphs.
 
 For dashboards and tools, the [UI copy standard](references/ui-copy.md) defaults to literal user-requested titles, no subtitle, no decorative English section codes, and no methodology copy unless it prevents a material misreading.
+
+When no brand or product palette is supplied, the [palette selection protocol](references/palette-selection.md) uses a fresh random seed to generate role-based, contrast-checked colors independently from the structural reference. It does not default to a named corporate design system.
 
 The reference library includes Apple Korea iPhone, BUIDL CTC, Visa Onchain Analytics, Blockworks Analytics, Dots & Lines, Stripe, and Spark Finance. It transfers structural decisions, not brand identity.
 

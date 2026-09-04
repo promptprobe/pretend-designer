@@ -15,7 +15,7 @@ Use this for new pages, restyles, and design reviews. Skip it for pure backend, 
 Write these five lines to yourself, then design. If you cannot fill them, you do not have a design yet.
 
 1. **Job.** One sentence: who this is for, what they do on this page, what “done” looks like.
-2. **Thesis.** One visual idea, not a moodboard dump. Examples: “a typesetter’s shop sign, not a SaaS dashboard”; “newsprint + one acid green”; “a 90s catalog grid with contemporary spacing.”
+2. **Thesis.** One visual idea, not a moodboard dump. Examples: “a typesetter’s shop sign, not a SaaS dashboard”; “a field notebook with one controlled signal”; “a 90s catalog grid with contemporary spacing.”
 3. **One real reference.** A specific existing site, magazine, album cover, wayfinding system, or product UI. Name it. Steal structure and attitude from that one thing, not from “modern SaaS.” If the user did not give a reference, pick one that fits the job and say which.
 4. **Non-negotiables.** Two or three constraints that hurt: a type system, a dominant material (paper, CRT, metal, newsprint), a layout rule (no centered hero, no 3-up cards, full-bleed type, etc.).
 5. **The tell you will not make.** Name the AI default this page would have fallen into, then ban it.
@@ -86,7 +86,7 @@ A real designer commits. Pick **one** of these directions and go deep. Mixing th
 - **Editorial.** Magazine or newspaper geometry: columns, pull quotes, rules, folios, running feet, image that breaks the grid.
 - **Material.** The screen is a surface (paper, plaster, steel, thermal print, CRT). Texture, edge, ink spread. Not a PNG overlay of “paper.”
 - **Product-index.** Like a catalog, parts list, or wayfinding: dense, tabular, labeled, utilitarian. Beauty from order, not from hero.
-- **Brutal / cheap.** Default system chrome used on purpose. Ugly-pretty. Few fonts, hard corners, one loud accent.
+- **Brutal / cheap.** Default system chrome used on purpose. Ugly-pretty. Few fonts, hard corners, one deliberately weighted accent.
 - **Historical cut.** Steal from a decade that is not 2024-SaaS (Swiss, Dutch postmodern, Japanese retail, 70s sci-fi paperback, early web). Translate, do not costume.
 
 If the product is actually a tool, it can still have a thesis. Linear did. Craigslist did. A docs site can be typeset. Do not use “it’s a tool so the default is fine.”
@@ -106,13 +106,17 @@ Read and apply [references/korean-typography.md](references/korean-typography.md
 
 ### Color palette (do this first)
 
-Do not invent four “nice” hex codes. Cite a **published** system and map 8–12 tokens from it. Put the source in a CSS comment.
+Read [references/palette-selection.md](references/palette-selection.md). Color must vary without collapsing into the model's favorite named system.
 
-Good sources: a newspaper/magazine brand book (FT Origami, Economist London ladder), IBM Carbon, a foundry specimen, Radix only if you pick an unusual scale and restyle it, a printed Pantone/offset job. Bad sources: Tailwind defaults, shadcn zinc+violet, “cream + tomato,” whatever the last toy used.
+- If the user supplied brand colors, an existing product palette, or exact color requirements, use them and do not run the lottery.
+- Otherwise run `python3 scripts/palette_lottery.py --mode light` once from the skill directory. Use `--mode dark` only when the brief calls for a dark surface. The dependency-free script uses a fresh random seed and emits the seed, role-based tokens, text-safe accent variants, and contrast ratios.
+- A layout or visual reference is **not** a color reference by default. Do not inherit its palette unless the user explicitly asks for a close color match.
+- Do not choose a named design system, company, publication, or website as the fallback palette source. That turns a familiar example into a repeated house style.
+- Do not reroll because another result feels more tasteful or familiar. Reroll only for a documented conflict with the user's brand, domain semantics, or accessibility requirements.
+- Keep semantic roles stable: success stays success and danger stays danger. Randomize the visual palette, not meaning.
+- Use `accent` for fills, rules, and data marks; use `accent-strong` for text. An accent is not permission to tint every selected row, KPI, icon, and chart.
 
-Map at least: `bg`, `bg-2`, `ink`, `ink-mute`, `line`, `accent`, `accent-2`, `ok`/`danger`, plus tints of those. Dirt is allowed: olive blacks, yellowed paper, oxidized blue.
-
-One accent that is slightly wrong for the category (claret on a calculator, school-bus on a docs site). Safe teal-on-white is a tell. Contrast is craft: body text on the actual background must pass. Accents can be loud. Dark mode is not `#0a0a0a` plus cyan unless the thesis is terminal.
+If the script cannot run, obtain a fresh random seed from the environment and follow the same reference. Do not substitute a color system recalled from model memory.
 
 ### Type size and ink color
 
@@ -174,10 +178,10 @@ Read and apply [references/ui-copy.md](references/ui-copy.md). User-requested co
 
 ## 4. Implementation (so the code does not undo the design)
 
-- CSS variables for the tokens, named after the source (`--paper`, `--claret`) not `--primary`.
+- CSS variables for the tokens, named by role (`--surface`, `--ink`, `--accent`, `--danger`) rather than a borrowed brand.
 - If you use Tailwind, treat it as a compiler, not a look. Custom theme, custom font, custom radius (including `0` or `2px`).
 - Avoid shadcn defaults unless you restyle every token. A restyled button is fine; a page of default `Card` is not.
-- Semantic HTML. Real labels. Focus states that match the thesis (ink ring, claret underline, fat outline), not a gold glow.
+- Semantic HTML. Real labels. Focus states that match the thesis (ink ring, accent underline, fat outline), not a framework-default glow.
 - On Korean pages, load one family and only the weights needed. On Latin-only pages, use at most two families and two to four files.
 - No autoplay video backgrounds.
 
@@ -197,7 +201,7 @@ Look at the page at 375px and 1280px, and answer:
 4. Count unexamined default fonts / purple / 3-up cards / dual CTAs / fade-up / 16px+ radius on panels / outlined banners / centered 600–900px islands. Score must be zero unless justified in the thesis.
 5. Does every dashboard title name the user's requested subject, metric, or task instead of manufacturing a takeaway?
 6. Would a designer from the reference you named recognize the theft? If not, you only vibe-copied.
-7. Can you point at the palette source and the type ramp in the file?
+7. Can you point at the user-supplied palette or the lottery seed, token roles, contrast results, and type ramp in the file?
 8. At 1280px, does chrome use the width, or is there a puddle of UI in the middle of the background?
 9. If Korean is present: is there exactly one Hangul family, no negative tracking, `word-break: keep-all`, and a measured line-height from the Korean reference scale?
 10. Delete every subtitle, explanatory sentence, section code, and methodology note once. If the page still works and means the same thing, keep it deleted.

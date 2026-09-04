@@ -6,6 +6,8 @@ Read this file only when the user supplies a design reference, asks for a refere
 
 A case study is evidence for a decision, not a template to reproduce. Reuse the observed relationship between type, color, geometry, content, and interaction. Do not reuse outcome-specific fonts, brand colors, copy, imagery, or component arrangements unless the user explicitly asks for close matching.
 
+Treat a reference selected for structure, density, typography, charts, or interaction as color-neutral. When the user has not supplied a palette, use the independent [palette selection protocol](palette-selection.md); do not import the reference brand's colors or replace them with another familiar company's design system.
+
 ## Observation protocol
 
 1. Open the live reference at a fixed desktop viewport, normally 1440×1000.
