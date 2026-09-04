@@ -4,7 +4,7 @@
 
 보라 그라데이션, 둥근 카드 3장, 가운데 모인 히어로, 근거 없는 폰트와 색상 대신 먼저 디자인의 목적·테제·레퍼런스를 정하고 작업하게 합니다. Cursor, Claude Code, Codex에서 같은 규칙과 사례 라이브러리를 사용할 수 있습니다.
 
-**[전체 저장소 ZIP 다운로드](https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.zip)** · **[스킬 원문](SKILL.md)** · **[한글 타이포 기준](references/korean-typography.md)** · **[레퍼런스 라이브러리](references/reference-workflow.md)**
+**[전체 저장소 ZIP 다운로드](https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.zip)** · **[스킬 원문](SKILL.md)** · **[팔레트 규칙](references/palette-selection.md)** · **[한글 타이포 기준](references/korean-typography.md)** · **[레퍼런스 라이브러리](references/reference-workflow.md)**
 
 ## 1분 설치
 
@@ -102,7 +102,7 @@ Cursor 또는 Claude Code:
 
 ## 색상은 특정 레퍼런스로 고정하지 않습니다
 
-브랜드 팔레트가 없을 때 IBM Carbon처럼 에이전트가 익숙한 시스템을 반복 선택하지 않습니다. 번들된 팔레트 생성기가 실행할 때마다 새로운 seed로 색상 역할을 만들고, 본문·보조문·강조색·상태색의 대비를 함께 검사합니다.
+브랜드 팔레트가 없을 때 에이전트가 익숙한 회사의 디자인 시스템을 반복 선택하지 않습니다. 번들된 팔레트 생성기가 실행할 때마다 새로운 seed로 색상 역할을 만들고, 본문·보조문·강조색·상태색의 대비를 함께 검사합니다.
 
 | 상황 | 처리 |
 | --- | --- |
@@ -112,6 +112,30 @@ Cursor 또는 Claude Code:
 | 색상 요구가 전혀 없음 | 독립적인 팔레트 생성기를 한 번 실행 |
 
 생성된 CSS에는 seed가 남으므로 마음에 든 결과는 재현할 수 있지만, 다음 프로젝트의 기본값으로 재사용하지 않습니다. 자세한 기준은 [팔레트 선택 규칙](references/palette-selection.md)에 있습니다.
+
+### 무엇이 달라지고, 무엇이 고정되나
+
+| 매번 달라지는 값 | 항상 지키는 값 |
+| --- | --- |
+| 배경의 색조와 온도 | 사용자 브랜드·기존 제품 색상 우선 |
+| 주 강조색과 보조 강조색 | 본문 `7:1`, 보조문·텍스트용 강조색 `4.5:1` 이상 대비 |
+| 팔레트 ID와 seed | 성공은 성공, 위험은 위험으로 읽히는 의미 |
+| 강조색 조합 | 사용자가 지정한 라이트·다크 모드 |
+
+생성기는 Python 표준 라이브러리만 사용하며 별도 패키지가 필요하지 않습니다.
+
+```bash
+# 실행할 때마다 다른 라이트 팔레트
+python3 scripts/palette_lottery.py --mode light
+
+# 같은 결과 재현
+python3 scripts/palette_lottery.py --mode light --seed 7d0f46c213bf71aa
+
+# 생성기 자체 검증
+python3 scripts/palette_lottery.py --self-test
+```
+
+출력에는 CSS 토큰과 함께 palette ID, seed, 역할별 대비값이 기록됩니다. 구조·차트·타이포그래피 레퍼런스는 그대로 활용할 수 있지만, 그 사이트의 브랜드 색상은 사용자가 요청하지 않는 한 가져오지 않습니다.
 
 ## 대시보드 카피는 필요한 말만
 
@@ -161,7 +185,7 @@ pretend-designer/
 └── .cursor/skills/pretend-designer/
 ```
 
-각 pack의 `SKILL.md`와 `references/`는 같은 내용입니다. 루트 파일은 검토용 기준본이고, 설치할 때는 사용하는 에이전트의 pack 폴더 전체를 받으면 됩니다.
+각 pack의 `SKILL.md`, `references/`, `scripts/`는 같은 내용입니다. 루트 파일은 검토용 기준본이고, 설치할 때는 사용하는 에이전트의 pack 폴더 전체를 받으면 됩니다.
 
 ## 범위
 
@@ -200,6 +224,14 @@ Korean pages use exactly one Hangul-capable family—Pretendard or Noto Sans KR�
 For dashboards and tools, the [UI copy standard](references/ui-copy.md) defaults to literal user-requested titles, no subtitle, no decorative English section codes, and no methodology copy unless it prevents a material misreading.
 
 When no brand or product palette is supplied, the [palette selection protocol](references/palette-selection.md) uses a fresh random seed to generate role-based, contrast-checked colors independently from the structural reference. It does not default to a named corporate design system.
+
+```bash
+python3 scripts/palette_lottery.py --mode light
+python3 scripts/palette_lottery.py --mode light --seed 7d0f46c213bf71aa
+python3 scripts/palette_lottery.py --self-test
+```
+
+The generator uses only the Python standard library. Each result includes its palette ID, seed, CSS tokens, and contrast report so a chosen result can be reproduced without becoming the default for the next project.
 
 The reference library includes Apple Korea iPhone, BUIDL CTC, Visa Onchain Analytics, Blockworks Analytics, Dots & Lines, Stripe, and Spark Finance. It transfers structural decisions, not brand identity.
 
