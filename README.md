@@ -4,7 +4,7 @@
 
 보라 그라데이션, 둥근 카드 3장, 가운데 모인 히어로, 근거 없는 폰트와 색상 대신 먼저 디자인의 목적·테제·레퍼런스를 정하고 작업하게 합니다. Cursor, Claude Code, Codex에서 같은 규칙과 사례 라이브러리를 사용할 수 있습니다.
 
-**[전체 저장소 ZIP 다운로드](https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.zip)** · **[스킬 원문](SKILL.md)** · **[팔레트 규칙](references/palette-selection.md)** · **[한글 타이포 기준](references/korean-typography.md)** · **[레퍼런스 라이브러리](references/reference-workflow.md)**
+**[전체 저장소 ZIP 다운로드](https://github.com/promptprobe/pretend-designer/archive/refs/heads/main.zip)** · **[스킬 원문](SKILL.md)** · **[팔레트 규칙](references/palette-selection.md)** · **[한글 타이포 기준](references/korean-typography.md)** · **[UI 카피 표준](references/ui-copy.md)** · **[아이콘·상태 표시 기준](references/icons-and-indicators.md)** · **[레퍼런스 라이브러리](references/reference-workflow.md)**
 
 ## 1분 설치
 
@@ -137,9 +137,9 @@ python3 scripts/palette_lottery.py --self-test
 
 출력에는 CSS 토큰과 함께 palette ID, seed, 역할별 대비값이 기록됩니다. 구조·차트·타이포그래피 레퍼런스는 그대로 활용할 수 있지만, 그 사이트의 브랜드 색상은 사용자가 요청하지 않는 한 가져오지 않습니다.
 
-## 대시보드 카피는 필요한 말만
+## 카피는 필요한 말만
 
-대시보드와 도구 화면에서는 레이아웃의 빈칸을 채우기 위한 헤드라인·부제·설명문을 만들지 않습니다. 사용자가 요청한 이름과 실제 지표를 우선하고, 문장을 지워도 사용과 해석에 문제가 없다면 삭제합니다.
+홈페이지, 대시보드, 도구 화면 모두에서 레이아웃의 빈칸을 채우기 위한 헤드라인·부제·설명문을 만들지 않습니다. 사용자가 요청한 이름과 실제 지표를 우선하고, 문장을 지워도 사용과 해석에 문제가 없다면 삭제합니다.
 
 | 항목 | 기본값 |
 | --- | --- |
@@ -149,7 +149,62 @@ python3 scripts/palette_lottery.py --self-test
 | 방법론·제외 항목 | 오해 방지·규제·사용자 요청에 필요할 때만 해당 지표 근처에 표시 |
 | 섹션명 | 내용을 직접 명명. 장식용 `A/B/C/D`, `SIGNAL`, `CHECK`는 사용하지 않음 |
 
-[Slop Sensor](https://github.com/promptprobe/slop-sensor)를 사용할 수 있으면 먼저 문체 패턴을 검사합니다. 다만 자연스럽지만 불필요한 UI 문장은 패턴 검사만으로 잡히지 않으므로, 이어서 별도의 필요성 검사를 수행합니다. 전체 기준과 예시는 [대시보드 UI 카피 표준](references/ui-copy.md)에 있습니다.
+[Slop Sensor](https://github.com/promptprobe/slop-sensor)를 사용할 수 있으면 먼저 문체 패턴을 검사합니다. 다만 자연스럽지만 불필요한 UI 문장은 패턴 검사만으로 잡히지 않으므로, 이어서 별도의 필요성 검사를 수행합니다. 전체 기준과 예시는 [UI 카피 표준](references/ui-copy.md)에 있습니다.
+
+홈페이지와 랜딩 페이지에도 같은 기준을 적용합니다.
+
+| 항목 | 기본값 |
+| --- | --- |
+| 히어로 | 이름 또는 무엇인지 말하는 한 문장. 슬로건 없음 |
+| 히어로 아래 설명문, 제목 위 배지 | 없음. 가격·플랫폼·제약 같은 사실이 있을 때만 |
+| 섹션 제목 아래 문단 | 없음 |
+| 카드·기능 문구 | 이름과 사실(수치, 사양, 지원 형식). 효용을 약속하는 문장 없음 |
+| 내용이 없는 섹션 | 문구를 지어내지 않고 섹션을 뺌 |
+
+`여기에 모여서, 한번에 확인`처럼 쉼표로 나눈 슬로건, `한눈에`·`손쉽게`·`지금 바로`·`혁신적인`·`당신의`, 질문형 제목, 세 단어 나열은 유의어로 바꾸지 않고 대상의 이름으로 고치거나 지웁니다.
+
+## 아이콘과 상태 표시는 기본값이 없음
+
+| 항목 | 규칙 |
+| --- | --- |
+| 아이콘 path | 에이전트가 직접 쓰거나 기억으로 재현하지 않음. 관리되는 아이콘 세트 하나를 설치하거나 원본 그대로 복사 |
+| 일관성 | 세트 하나, 스타일 하나, 선 굵기 하나, 그리드 하나. 세트 이름과 버전을 파일에 기록 |
+| 출처를 확보할 수 없을 때 | 아이콘 대신 텍스트 라벨 |
+| 장식용 아이콘 | 기능 제목 위 아이콘, 색 타일 안 아이콘, AI를 뜻하는 반짝이 아이콘은 제거 |
+| 로고 | 제공된 파일이 없으면 페이지 서체로 쓴 이름. 임의의 도형 로고를 만들지 않음 |
+| 상태 점 | 코드가 실제로 읽는 값에 연결되고 모든 상태가 설계된 경우에만. 깜빡임 없음 |
+| 도구·벤더 표기 | `Claude 연동 중`, `AI 기반`, `Powered by ...`는 사용자가 준 문구가 아니면 넣지 않음 |
+
+전체 기준은 [아이콘·상태 표시 기준](references/icons-and-indicators.md)에 있습니다.
+
+## 자동 검사
+
+`scripts/ui_lint.py`는 위 규칙 중 기계적으로 찾을 수 있는 항목을 HTML, JSX/TSX, Vue, Svelte, Astro, CSS 파일에서 검사합니다. Python 표준 라이브러리만 사용합니다.
+
+```bash
+# 파일 또는 폴더 검사. error가 있으면 종료 코드 1
+python3 scripts/ui_lint.py src/
+
+# warning도 실패로 처리
+python3 scripts/ui_lint.py --strict src/
+
+# 검사기 자체 검증
+python3 scripts/ui_lint.py --self-test
+```
+
+| 규칙 | 수준 | 찾는 것 |
+| --- | --- | --- |
+| `tool-attribution` | error | `Claude 연동`, `AI 기반`, `Powered by ...` |
+| `status-pulse` | error | `animate-ping`, `animate-pulse`, pulse 계열 keyframes |
+| `inline-icon` | error | `icon-set:` 기록이 없는 파일의 인라인 SVG path |
+| `emoji` | error | 인터페이스 안의 이모지 |
+| `status-dot` | warn | 12px 이하 원형 요소, 작은 색 점 |
+| `status-text` | warn | `연동 중`, `연결됨`, `Live`, `Online` 등 |
+| `icon-consistency` | warn | 한 파일 안의 서로 다른 선 굵기·viewBox |
+| `filler-ko`, `filler-en`, `slogan-comma` | warn | 상투 문구와 쉼표 슬로건 |
+| `heading-paragraph` | warn | 제목 바로 아래 문단 |
+
+정당한 예외는 해당 줄에 `ui-lint-ignore`를 적어 제외합니다. 이 검사는 패턴만 찾습니다. 자연스럽지만 필요 없는 문장과 아이콘의 완성도는 스킬의 출시 점검에서 직접 확인합니다.
 
 ## 한글 페이지는 더 엄격하게
 
@@ -174,10 +229,12 @@ pretend-designer/
 │   ├── korean-typography.md
 │   ├── chart-grammar.md
 │   ├── ui-copy.md
+│   ├── icons-and-indicators.md
 │   ├── palette-selection.md
 │   └── cases/
 ├── scripts/
-│   └── palette_lottery.py
+│   ├── palette_lottery.py
+│   └── ui_lint.py
 ├── packs/
 │   ├── cursor/pretend-designer/
 │   ├── claude/pretend-designer/
@@ -221,7 +278,9 @@ Use Visa Onchain Analytics for chart structure, but keep our brand and copy.
 
 Korean pages use exactly one Hangul-capable family—Pretendard or Noto Sans KR—with the measured size, leading, tracking, and line-breaking rules in the [Korean typography standard](references/korean-typography.md). Inter is reserved for Latin-only pages because it does not contain Hangul glyphs.
 
-For dashboards and tools, the [UI copy standard](references/ui-copy.md) defaults to literal user-requested titles, no subtitle, no decorative English section codes, and no methodology copy unless it prevents a material misreading.
+For every page, the [UI copy standard](references/ui-copy.md) defaults to literal user-requested titles, no subtitle, no decorative English section codes, and no methodology copy unless it prevents a material misreading. Homepages get no lede, eyebrow badge, or paragraph under section headings unless the line carries a fact, and sections without real content are dropped rather than filled.
+
+The [icons and indicators standard](references/icons-and-indicators.md) forbids model-authored SVG path data: icons come verbatim from one maintained set with one stroke width and grid, or the page uses text labels. Status dots ship only when bound to a real state with every state designed, and tool or vendor attribution such as “Powered by ...” is omitted unless the user supplied it. `python3 scripts/ui_lint.py <paths>` checks the mechanical subset of these rules.
 
 When no brand or product palette is supplied, the [palette selection protocol](references/palette-selection.md) uses a fresh random seed to generate role-based, contrast-checked colors independently from the structural reference. It does not default to a named corporate design system.
 

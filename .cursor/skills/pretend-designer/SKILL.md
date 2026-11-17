@@ -62,6 +62,7 @@ If any of these appear without a written reason that serves the thesis, rip them
 - Cards that `scale(1.05)` on hover
 - Floating blobs, mesh gradients, particle fields, aurora backgrounds
 - Emoji as icons or in CTAs
+- Decoration added to make a quiet page feel finished: divider ornaments, background grids or dots, corner marks, numbered folios with no sequence
 - Fake 3D abstract shapes from the same six stock packs
 
 **Copy / chrome**
@@ -75,6 +76,21 @@ If any of these appear without a written reason that serves the thesis, rip them
 - Decorative English section codes such as `B / CHANNEL CHECK` inside a Korean UI
 - Meta headings that narrate the composition, count the evidence, or announce that sections are connected
 - Scope-exclusion disclaimers in the hero when the excluded data is irrelevant to the requested view
+- A sentence under a homepage heading that narrates the layout or promises convenience: `여기에 모여서, 한번에 확인`, `한눈에 살펴보세요`, `Everything in one place`
+- A lede, eyebrow pill, or section description that exists because the template had a slot for it
+- Comma-split slogans, `손쉽게` / `간편하게` / `지금 바로` / `혁신적인` / `당신의`, rhetorical-question headings, staccato triplets
+
+**Icons / indicators**
+- Icon path data written or recalled by the model instead of taken verbatim from one maintained icon set
+- Icons from more than one set, mixed outline and filled styles, or mixed stroke widths on one page
+- An icon above every feature title, or an icon inside a tinted rounded square or circle
+- UI icons scaled up to serve as illustrations
+- Sparkle, wand, robot, or brain glyphs standing for “AI”
+- An invented logo glyph when the user supplied no logo
+- A green dot beside `연동 중`, `Live`, `Online`, or `Connected` that is not bound to a real state
+- Pulsing or pinging dots
+- Tool or vendor attribution as chrome: `Claude 연동 중`, `AI 기반`, `Powered by ...`
+- Eyebrow badges (`NEW`, `Beta`, `v2.0`), fake counters, “updated just now”
 
 Banning is not the design. After the bans, you still have to choose.
 
@@ -165,16 +181,38 @@ The page is a surface that meets the edges of the window. A lonely centered colu
 - One primary action, named after the outcome (“Send the invoice”, “Book Tuesday”), not “Get started.”
 - Headlines can be dry. Dry is designed. Hype is a template.
 
-### UI copy (mandatory for dashboards and tools)
+### UI copy (mandatory for every page)
 
 Read and apply [references/ui-copy.md](references/ui-copy.md). User-requested content and terminology outrank an agent's urge to make the page sound editorial.
 
+- On homepages and landing pages, the hero is the name or one literal sentence. No lede, no eyebrow, no paragraph under section headings, no footer tagline, unless that line carries a fact the reader needs. Do not invent claims to fill a section; drop the section.
+- Apply the Korean machine-voice table in the reference. Fix by naming the thing or deleting the line, never by swapping in a synonym.
 - Use the user's exact page name or a literal subject label as the title. Do not turn an inferred data pattern into a slogan or executive conclusion unless the user explicitly asked for one.
 - Default to **no subtitle**. Keep one only when it adds scope, unit, state, instruction, or risk that is necessary to use or interpret the page and is not already visible.
 - Give every visible string a job: identify, label, define, filter, instruct, warn, or enable action. If deleting it changes none of those, delete it.
 - Do not announce which unrelated data was excluded. Add a methodology note only when omission would cause a material misreading, the user requested it, or compliance requires it; place it next to the affected metric or in details, not in the hero.
 - Match the user's language. Do not invent alphabetical section folios, all-caps English labels, `SIGNAL`, `CHECK`, `OVERVIEW`, or `INSIGHT` as decoration. Preserve only real domain terms the user needs.
 - If `slop-sensor` is available, use its embedded mode with the appropriate register before finalizing Korean UI copy. Then run the UI necessity check above; prose-pattern detection alone cannot decide whether a sentence belongs in the interface.
+
+### Icons and indicators (mandatory before adding either)
+
+Read and apply [references/icons-and-indicators.md](references/icons-and-indicators.md). The default for icons, status dots, badges, and chips is absent.
+
+- Never write or recall SVG path data for an icon. Install one maintained icon set or copy its files verbatim, record the set and version in the file (`icon-set: <name> <version>`), and keep one style, one stroke width, one grid. If no source is available, use a text label.
+- An icon needs a job: an icon-only control, a row-level type or state glyph, the direction of an action. Decorative feature icons and icon tiles are removed, not improved.
+- With no supplied logo, the mark is the name set in the page's type. Third-party logos come from official assets, unmodified.
+- A status indicator ships only when it is bound to a value the code reads, every state is designed, the state is carried by text, and it sits beside the thing it describes. It does not pulse. Otherwise delete it.
+- Do not show the names of the tools, models, or vendors used to build or run the page unless the user supplied that content or attribution is required.
+
+### Subtraction pass
+
+Clean is what remains after removal, not a style applied on top. After the page works, go through it once deleting; do not add anything in this pass.
+
+- Each element is content, navigation, a control, or a state. Anything else goes: ornaments, badges, decorative icons, background patterns, dividers between things already separated by space.
+- Each region has one level of containment. A card inside a card inside a section with its own background is three; keep one.
+- Count distinct text sizes, weights, colors, radii, and spacing steps. Every value outside the written ramp and tokens is merged into the nearest one.
+- Align every left edge to a small number of shared lines. An element that sits on its own line needs a reason.
+- The page's distinctiveness must survive this pass. If it does not, the thesis was carried by ornament; return to type, geometry, and color rather than restoring decoration.
 
 ## 4. Implementation (so the code does not undo the design)
 
@@ -187,7 +225,7 @@ Read and apply [references/ui-copy.md](references/ui-copy.md). User-requested co
 
 ## Reference cases (conditional)
 
-When the user supplies a design reference, asks for a reference breakdown, or needs analytical charts, read [references/reference-workflow.md](references/reference-workflow.md). Select only the one or two cases that fit the current job; do not load the full case library by default. For chart work, also read [references/chart-grammar.md](references/chart-grammar.md). For any page containing Korean, read [references/korean-typography.md](references/korean-typography.md) regardless of visual direction. For dashboards and tools, read [references/ui-copy.md](references/ui-copy.md).
+When the user supplies a design reference, asks for a reference breakdown, or needs analytical charts, read [references/reference-workflow.md](references/reference-workflow.md). Select only the one or two cases that fit the current job; do not load the full case library by default. For chart work, also read [references/chart-grammar.md](references/chart-grammar.md). For any page containing Korean, read [references/korean-typography.md](references/korean-typography.md) regardless of visual direction. For every page with visible copy, read [references/ui-copy.md](references/ui-copy.md). Before adding an icon, logo, status dot, or badge, read [references/icons-and-indicators.md](references/icons-and-indicators.md).
 
 Reuse structure and decision logic, not outcome-specific fonts, colors, copy, imagery, or brand identity. State what principle is being borrowed, what recognizable feature is being rejected, and why the chosen case fits the current user's job.
 
@@ -197,7 +235,7 @@ Look at the page at 375px and 1280px, and answer:
 
 1. If you grayscale it, does hierarchy still hold?
 2. Could you identify the studio without the logo? (Type + color + geometry.)
-3. Is there a single element a coworker would argue about? If everything is agreeable, it is still average.
+3. Is there a single decision a coworker would argue about, made in type, geometry, or color rather than in added ornament? If everything is agreeable, it is still average.
 4. Count unexamined default fonts / purple / 3-up cards / dual CTAs / fade-up / 16px+ radius on panels / outlined banners / centered 600–900px islands. Score must be zero unless justified in the thesis.
 5. Does every dashboard title name the user's requested subject, metric, or task instead of manufacturing a takeaway?
 6. Would a designer from the reference you named recognize the theft? If not, you only vibe-copied.
@@ -205,8 +243,12 @@ Look at the page at 375px and 1280px, and answer:
 8. At 1280px, does chrome use the width, or is there a puddle of UI in the middle of the background?
 9. If Korean is present: is there exactly one Hangul family, no negative tracking, `word-break: keep-all`, and a measured line-height from the Korean reference scale?
 10. Delete every subtitle, explanatory sentence, section code, and methodology note once. If the page still works and means the same thing, keep it deleted.
+11. Does every icon come verbatim from the one recorded set, with one stroke width and one grid, and does each have a job? Would the page lose information if all icons were removed? If not, remove them.
+12. Is every dot, badge, and status word bound to a real state with all states designed? Is any tool, model, or vendor named that the user did not supply?
+13. On a homepage: is there any sentence under a heading that could be deleted without losing a fact? Delete it.
+14. Run `python3 scripts/ui_lint.py <changed files>` from the skill directory. Errors must be zero. Read each warning and either remove the cause or state the functional reason it stays.
 
-If 3, 4, 5, 7, 8, 9, or 10 fail, redo copy, type, radius, color, and **page geometry** before adding more components.
+If 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, or 14 fail, redo copy, type, radius, color, and **page geometry** before adding more components.
 
 ## 6. What this skill is not
 
@@ -215,6 +257,7 @@ If 3, 4, 5, 7, 8, 9, or 10 fail, redo copy, type, radius, color, and **page geom
 - Not dark mode plus neon equals original.
 - Not a request to ignore accessibility, performance, or the user’s actual brand rules. If they gave a brand kit, interpret it with craft. Do not ignore it.
 - Not a reason to delay shipping with infinite moodboards. Thesis, then one tight pass, then the checklist.
+- Not “clean means empty and gray.” Removal exposes the type, grid, and color decisions; it does not replace them.
 - Not “make everything full-width soup.” Prose still has a measure. Tools still have alignment. The ban is the *island*, not density.
 
 When the user already has a design they like, match that, then apply the bans only where their design is accidentally generic.
