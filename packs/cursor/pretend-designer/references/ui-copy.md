@@ -1,6 +1,6 @@
 # UI copy: say only what the interface needs
 
-Read this file for dashboards, analytical reports, tools, and operational interfaces. The default is literal, short, and user-led. Do not add an editorial voice merely because the layout has space for a headline and subtitle.
+Read this file for every page that shows words: homepages, landing pages, dashboards, analytical reports, tools, and operational interfaces. The default is literal, short, and user-led. Do not add an editorial voice merely because the layout has space for a headline and subtitle.
 
 This contract incorporates the fact-preservation and unsupported-claim principles of [Slop Sensor](https://github.com/promptprobe/slop-sensor), then adds a UI-specific necessity test. Slop Sensor finds recurring prose patterns; it does not by itself decide whether a natural-sounding sentence belongs in an interface.
 
@@ -29,6 +29,62 @@ Assign every visible string one job:
 Delete the string if it has no job. Then ask: if this line disappears, can the user still understand the page, operate it, and interpret the numbers correctly? If yes, keep it deleted.
 
 Whitespace is not a copy requirement. A design does not need a subtitle because a component template includes a subtitle slot.
+
+## Homepages and landing pages
+
+The same necessity test applies outside dashboards. A homepage is not exempt because it is marketing; most of what reads as machine-written on a homepage is the sentence under each heading.
+
+| Slot | Default |
+| --- | --- |
+| Hero heading | The product or site name, or one literal sentence saying what it is and for whom. No slogan. |
+| Hero lede | Absent. Keep one only when it adds a fact the heading lacks: price, platform, availability, a hard constraint. |
+| Eyebrow, badge, or announcement pill above the heading | Absent unless it links to a real, dated announcement the user supplied. |
+| Section heading | A noun phrase naming the content. |
+| Paragraph under a section heading | Absent. The content below the heading is the explanation. |
+| Card or feature text | A name plus facts: a number, a spec, a limit, a supported format. No benefit prose. |
+| Button | Verb plus object, named after what happens next. |
+| Footer tagline | Absent. |
+
+Rules:
+
+- Do not narrate the layout or the reader's next move: `여기에 모여서, 한번에 확인`, `아래에서 확인하세요`, `필요한 모든 것이 한곳에`, `Everything you need, in one place`. The reader can see where things are.
+- Do not describe a heading with a second sentence that says the same thing in more words. `기능` followed by `다양한 기능을 한눈에 살펴보세요` is one string of content and one string of filler.
+- Do not invent claims, counts, customers, or benefits to fill a section. When the brief has no content for a section, drop the section. A short page built from real content is the correct output.
+- Do not mention how the page was made or what powers it (`Claude 연동 중`, `AI 기반`, `Powered by ...`) unless the user asked for that line or a license requires attribution. Tooling is not content.
+- An empty slot stays empty. Do not write to balance a column or fill a card to equal height.
+
+Bad default:
+
+> 흩어진 자료를 한곳에
+>
+> 여기에 모여서, 한번에 확인하세요. 더 빠르고 스마트한 업무가 시작됩니다.
+
+Better default, using only what the brief states:
+
+> 팀 문서 보관함
+
+If the brief gives a real differentiator, state it as a fact (`PDF·HWP·DOCX 전문 검색`), not as a promise (`어떤 문서든 손쉽게`).
+
+## Korean machine-voice patterns
+
+These are natural Korean and still mark a page as generated. Rewrite as a literal label or delete; do not swap in a synonym.
+
+| Pattern | Examples | Fix |
+| --- | --- | --- |
+| Comma-split slogan | `여기에 모여서, 한번에 확인` · `더 빠르게, 더 똑똑하게` | Name the thing: `통합 조회` |
+| Convenience adverbs | `한눈에` · `한번에` · `한곳에서` · `손쉽게` · `간편하게` · `쉽고 빠르게` | Delete; state the actual step count or time if known |
+| Urgency openers | `이제` · `지금 바로` · `오늘부터` | Delete |
+| Empty superlatives | `혁신적인` · `스마트한` · `완벽한` · `강력한` · `새로운 경험` · `그 이상` · `차원이 다른` | Replace with the measurable property or delete |
+| Totalizers | `모든 것` · `올인원` · `A부터 Z까지` · `처음부터 끝까지` | List the actual scope |
+| Second-person intimacy | `당신의` · `당신만의` · `여정` · `함께합니다` | Delete |
+| Negation-reveal | `단순한 도구가 아닙니다. 파트너입니다.` | State what it is, once |
+| Rhetorical question heading | `왜 OO인가요?` · `아직도 수작업 하시나요?` | `OO 소개`, `도입 효과`, or no heading |
+| Staccato triplet | `빠른 설정. 안전한 보관. 쉬운 공유.` | One literal sentence or a spec list |
+| Translationese | `~을 통해` · `~을 제공합니다` · `~할 수 있습니다` repeated per sentence | Use the direct verb: `검색합니다`, `내보냅니다` |
+| Invitation endings on every block | `~해 보세요` · `~을 만나보세요` · `~을 경험하세요` | Keep the imperative on the button only |
+| Decorative punctuation | Em dashes, `→` in body text, `!`, `✨` | Plain punctuation |
+
+English equivalents fall under the same rule: `all in one place`, `at a glance`, `effortlessly`, `meet X`, `say goodbye to`, `built for the way you work`.
 
 ## Dashboard header default
 
@@ -115,14 +171,16 @@ When `slop-sensor` is unavailable, do not block the design. Apply these built-in
 
 ## Final copy check
 
-Before shipping a dashboard or tool:
+Before shipping any page:
 
 1. List the job of every title, subtitle, explanatory sentence, note, and section label.
 2. Remove every line without a functional job.
 3. Confirm that remaining conclusions were requested or are directly supported.
 4. Move necessary methodology to the affected metric instead of the hero.
 5. Remove decorative English, section letters, and translated template labels.
+   On homepages, also remove ledes, eyebrow badges, paragraphs under section headings, and tool or vendor attribution that the user did not supply.
 6. Compare the remaining labels with the user's original request and terminology.
 7. Render the final interface once with subtitles hidden; restore only the lines whose absence causes a real comprehension or operation failure.
+8. Run `python3 scripts/ui_lint.py <files>` from the skill directory and resolve each finding by deleting or rewriting the string, not by rephrasing around the pattern.
 
 The goal is not an artificially terse interface. It is an interface whose words earn their space.
