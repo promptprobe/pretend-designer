@@ -171,6 +171,7 @@ Read and apply [references/ui-copy.md](references/ui-copy.md). User-requested co
 
 - Use the user's exact page name or a literal subject label as the title. Do not turn an inferred data pattern into a slogan or executive conclusion unless the user explicitly asked for one.
 - Default to **no subtitle**. Keep one only when it adds scope, unit, state, instruction, or risk that is necessary to use or interpret the page and is not already visible.
+- Omit demo or workspace status badges, read-only labels without an operational consequence, and repeated branding in headers, sidebars, and footers. Identify synthetic data and its date in data details and exports.
 - Give every visible string a job: identify, label, define, filter, instruct, warn, or enable action. If deleting it changes none of those, delete it.
 - Do not announce which unrelated data was excluded. Add a methodology note only when omission would cause a material misreading, the user requested it, or compliance requires it; place it next to the affected metric or in details, not in the hero.
 - Match the user's language. Do not invent alphabetical section folios, all-caps English labels, `SIGNAL`, `CHECK`, `OVERVIEW`, or `INSIGHT` as decoration. Preserve only real domain terms the user needs.

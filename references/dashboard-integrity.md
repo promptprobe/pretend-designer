@@ -6,7 +6,7 @@ Read this for an interactive dashboard or data-heavy mockup. Visual craft must s
 
 - State the monitoring task and the entity, unit, time window and aggregation of each metric.
 - Separate page scope, historical interval and fixed-window metrics. A 30-day selector must not silently turn a 24h volume metric into 30-day volume.
-- Use one fixture dataset when live data is outside the brief. Label synthetic data visibly; never use a live-status dot or freshness claim for an unconnected mockup.
+- Use one fixture dataset when live data is outside the brief. Disclose synthetic data and its reference date in a reachable data details view. Reserve prominent status for information the user needs at a glance.
 - Derive totals, proportions, changes, chart endpoints and exported rows from that dataset. Define the comparison baseline precisely.
 
 ## Interaction contract

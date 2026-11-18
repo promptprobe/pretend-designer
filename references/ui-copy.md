@@ -51,6 +51,16 @@ Better default:
 
 If the user supplied a more specific dashboard name, use that exact name instead. Do not invent the “better” example as a universal title.
 
+## Interface chrome
+
+| Omit by default | Keep only when needed |
+| --- | --- |
+| Top-bar badges such as `샘플 데이터` or `DEMO` | Identify synthetic data and its reference date in a reachable data details view and in exports |
+| `데모 워크스페이스`, decorative numbering, and read-only labels | Show an access state only when it changes what the user can do |
+| Repeated brand and category in the header, sidebar, or footer | One brand mark and one page title, with functional navigation and controls |
+
+Remove the surrounding row or panel if it has no function after the copy is gone.
+
 ## Subtitles and explanatory copy
 
 A subtitle may stay only when at least one condition is true:
