@@ -238,3 +238,10 @@ The reference library includes Apple Korea iPhone, BUIDL CTC, Visa Onchain Analy
 MIT License.
 
 </details>
+
+
+## Interactive dashboard example
+
+[STRATUM blockchain dashboard](examples/blockchain-dashboard/) is a buildless Korean dashboard with coherent synthetic data, responsive charts, period and chain filters, sorting, search, keyboard point inspection, and CSV export. Open its `index.html` or serve that directory with any static server. The example includes a bundled Pretendard font, palette provenance, and QA notes. Treat it as an interaction example, not a fixed visual template.
+
+For dashboard work, the skill now includes [dashboard integrity](references/dashboard-integrity.md): scope semantics, shared fixtures, mobile chart geometry, negative-value states, and observable control behavior.

@@ -1,0 +1,41 @@
+{
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 1000,
+      "documentOverflow": false
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "documentOverflow": false
+    }
+  ],
+  "fontLoaded": true,
+  "checks": {
+    "period7": true,
+    "period30": true,
+    "period90": true,
+    "scopeBase": true,
+    "scopeArbitrum": true,
+    "emptySearch": true,
+    "sortAscending": true,
+    "sortDescending": true,
+    "methodologyDialog": true,
+    "keyboardChartPoint": true,
+    "csvDownloaded": true,
+    "csvReconciles": true
+  },
+  "csvTotals": {
+    "tvl": 128.42,
+    "volume24h": 8.76,
+    "stablecoinSupply": 214.6,
+    "fees24h": 6.82
+  },
+  "consoleErrors": [],
+  "limits": [
+    "No live market API",
+    "No wallet connection",
+    "Not an automated cross-browser test suite"
+  ]
+}

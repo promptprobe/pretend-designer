@@ -176,6 +176,10 @@ Read and apply [references/ui-copy.md](references/ui-copy.md). User-requested co
 - Match the user's language. Do not invent alphabetical section folios, all-caps English labels, `SIGNAL`, `CHECK`, `OVERVIEW`, or `INSIGHT` as decoration. Preserve only real domain terms the user needs.
 - If `slop-sensor` is available, use its embedded mode with the appropriate register before finalizing Korean UI copy. Then run the UI necessity check above; prose-pattern detection alone cannot decide whether a sentence belongs in the interface.
 
+### Interactive dashboard integrity
+
+For interactive dashboards and data-heavy mockups, read [references/dashboard-integrity.md](references/dashboard-integrity.md). Keep fixture data, scopes, chart geometry and controls coherent across states. Visual polish does not replace data and interaction checks.
+
 ## 4. Implementation (so the code does not undo the design)
 
 - CSS variables for the tokens, named by role (`--surface`, `--ink`, `--accent`, `--danger`) rather than a borrowed brand.
@@ -218,3 +222,4 @@ If 3, 4, 5, 7, 8, 9, or 10 fail, redo copy, type, radius, color, and **page geom
 - Not “make everything full-width soup.” Prose still has a measure. Tools still have alignment. The ban is the *island*, not density.
 
 When the user already has a design they like, match that, then apply the bans only where their design is accidentally generic.
+

@@ -1,0 +1,25 @@
+{
+  "seed": "c838ecb19f3b0722",
+  "algorithm": "LCG environment-seeded fallback; same role and contrast contract",
+  "tokens": {
+    "bg": "#fafbf9",
+    "surface": "#ffffff",
+    "ink": "#21221c",
+    "ink-muted": "#717463",
+    "line": "#d8d9d3",
+    "accent": "#cd763c",
+    "accent-2": "#2dd2cd",
+    "success": "#247044",
+    "danger": "#b93638",
+    "accent-strong": "#aa5e2c",
+    "accent-2-strong": "#207e7b"
+  },
+  "contrast": {
+    "ink": 15.44,
+    "ink-muted": 4.62,
+    "accent-strong": 4.65,
+    "accent-2-strong": 4.67,
+    "success": 5.82,
+    "danger": 5.55
+  }
+}
